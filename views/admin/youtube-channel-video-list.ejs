@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ'}) %>
+<body class="page-body">
+	<%- include('../inc/admin-settings-pane') %>
+	<div class="page-container">
+		<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
+		<div class="main-content">		
+			<%- include('../inc/admin-navbar-user') %>
+			
+			<!-- Content -->
+			<div class="page-title">
+			
+				<div class="title-env">
+					<h1 class="title"><%=channel_name%></h1>
+					<p class="description"></p>
+				</div>
+				<div class="breadcrumb-env">
+					<a href="javascript:;" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" class="btn btn-red btn-single btn-sm">Удалить канал</a>
+				</div>
+				
+
+				
+			</div>
+			<div class="modal fade" id="modal-1" style="display: none;" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<script>
+							function channelDelete(channel_id){
+								fetch(`http://localhost:3000/admin/youtube-channel/delete-channel/${channel_id}`)
+							.then(()=>{
+								document.location.replace("http://localhost:3000/admin/")
+							})
+						}
+
+						</script>
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title">Удалить канал</h4>
+						</div>
+						
+						<div class="modal-body">
+							Вы уверены что хотите удалить канал?
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+							<button type="button" class="btn btn-red"  onclick="channelDelete('<%=channel_id%>')">Удалить</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="panel-body panel-border">
+
+				<div class="row">
+				<div class="col-sm-12">
+	
+					<!-- Table Model 2 -->
+					<strong>Видео канала</strong>
+					
+					<table class="table table-model-2 table-hover">
+						<thead>
+							<tr>
+								<th style="white-space: nowrap">Название</th>
+								<th style="white-space: nowrap">Дата</th>
+								<th style="white-space: nowrap"></th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<% videoList.forEach(video => { %>
+								<tr style="cursor: pointer">
+									<td><%= video.video_name %></td>
+									<td><%= video.date.split('T')[0] %></td>
+									<% if (!video.is_published){ %>
+									<td align="right"><button class="btn btn-primary btn-icon" style="width: 140px;" onclick="publish_news('<%=video.id%>', true)">
+										<span>Опубликовать</span>
+									</button></td>
+									<% } else{ %>
+									<td align="right"><button class="btn btn-white btn-icon" style="width: 140px;" onclick="publish_news('<%=video.id%>', false)">
+										<span>Снять с публикации</span>
+									</button></td>
+									<% } %>
+								</tr>
+							<%}) %>
+
+							<script>
+								function publish_news(video_id, is_published){
+									fetch(`http://localhost:3000/admin/publiset-video-published?video_id=${video_id}&is_published=${is_published}`)
+									.then(()=>{
+										location.reload()
+									})
+								}
+							</script>
+							
+							
+							
+
+
+						</tbody>
+					</table>
+	
+					<script type="text/javascript">
+						
+						</script>
+	
+				</div>
+				</div>
+	
+				</div>
+
+
+			<!-- END Content -->
+			<%- include('../inc/admin-footer') %>
+		</div>
+	</div>
+	</div>
+	<%- include('../inc/admin-loader') %>
+	<%- include('../inc/admin-scripts') %>
+</body>
+</html>

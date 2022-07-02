@@ -1,0 +1,143 @@
+<div class="modal fade custom-width" id="modal-2">
+   <div class="modal-dialog" style="width: 60%;">
+      <div class="modal-content">
+         
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Добавить канал</h4>
+         </div>
+         
+         <div class="modal-body">
+            
+            <form method="post" class="add-channel-form">
+               <input type="text" class="form-control" id="field-1" placeholder="Ссылка на youtube-канал" name="add-channel-input">
+            </form>
+            
+         </div>
+         
+         <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-info" onclick="addYoutubeChannel()">Добавить</button>
+         </div>
+         <script>
+            function addYoutubeChannel(){
+               form = document.querySelector('add-channel-form')
+               channelLinkForm = document.querySelector('[name="add-channel-input"]')
+               const data = {channel_link: encodeURI(decodeURI(channelLinkForm.value))}
+               const url = 'http://localhost:3000/admin/youtube-channel/add-channel'
+               axios.post(url, data)
+               .then(() => {
+                  location.reload();
+               });
+               
+               
+            }
+
+            
+
+         </script>
+      </div>
+   </div>
+</div>
+
+<div class="sidebar-menu toggle-others fixed">
+		
+   <div class="sidebar-menu-inner">
+      
+      <header class="logo-env">
+
+         <!-- logo -->
+         <div class="logo">
+            <a href="http://localhost:3000/admin" class="logo-expanded">
+               <img src="assets/images/logo@2x.png" width="80" alt="" />
+            </a>
+
+            <a href="dashboard-1.html" class="logo-collapsed">
+               <img src="assets/images/logo-collapsed@2x.png" width="40" alt="" />
+            </a>
+         </div>
+
+         <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+         <div class="mobile-menu-toggle visible-xs">
+            <a href="#" data-toggle="user-info-menu">
+               <i class="fa-bell-o"></i>
+               <span class="badge badge-success">7</span>
+            </a>
+
+            <a href="#" data-toggle="mobile-menu">
+               <i class="fa-bars"></i>
+            </a>
+         </div>
+
+         <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+         <!-- <div class="settings-icon">
+            <a href="#" data-toggle="settings-pane" data-animate="true">
+               <i class="linecons-cog"></i>
+            </a>
+         </div> -->
+
+         
+      </header>
+      
+      
+            
+      <ul id="main-menu" class="main-menu">
+         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+         
+
+         <li>
+            <% if (menuElements.Youtube) {%>
+            <a href="layout-variants.html">
+               <i class="linecons-desktop"></i>
+               <span class="title">Youtube RSS</span>
+            </a>
+            <ul>
+               <% menuElements.Youtube.forEach(channel => { %>
+                  <li>
+                     <a href="http://localhost:3000/admin/youtube-channel/<%=channel.channel_id%>">
+                        <span class="title"><%= channel.channel_name %></span>
+                     </a>
+                  </li>
+
+               <%})%> 
+               
+               <li>
+                  
+                  <a href="javascript:;" onclick="jQuery('#modal-2').modal('show');" class="">
+                     <span class="title">Добавить канал</span></a>
+                  
+               </li>
+               
+               
+               
+              
+            </ul>
+         </li>
+         <% } %>
+         <li>
+            <a href="http://localhost:3000/admin/publications">
+               <i class="linecons-note"></i>
+               <span class="title">Публикации</span>
+            </a>
+            
+         <li>
+            <!-- <a href="charts-main.html">
+               <i class="linecons-globe"></i>
+               <span class="title">RSS</span>
+            </a>
+            <ul>
+               <li>
+                  <a href="charts-main.html">
+                     <span class="title">Reddit</span>
+                  </a>
+               </li>
+               
+               
+            </ul> -->
+         
+      </ul>
+      
+   </div>
+
+</div>

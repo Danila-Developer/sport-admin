@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ' }) %>
+
+	<body class="page-body">
+		<%- include('../inc/admin-settings-pane') %>
+			<div class="page-container">
+				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
+					<div class="main-content">
+						<%- include('../inc/admin-navbar-user') %>
+
+							<!-- Content -->
+							<%= menuEl.yt %>
+
+
+								<!-- END Content -->
+								<%- include('../inc/admin-footer') %>
+					</div>
+			</div>
+			</div>
+			<%- include('../inc/admin-loader') %>
+				<%- include('../inc/admin-scripts') %>
+	</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ' }) %>
+
+	<body class="page-body">
+		<%- include('../inc/admin-settings-pane') %>
+			<div class="page-container">
+				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
+					<div class="main-content">
+						<%- include('../inc/admin-navbar-user') %>
+
+							<!-- Content -->
+							
+
+
+							<div class="page-title">
+
+								<div class="title-env">
+									<h1 class="title">Создание публикации</h1>
+				
+								</div>
+				
+				
+				
+							</div>
+				
+				
+							<script type="text/javascript">
+								jQuery(document).ready(function ($) {
+									$("#sboxit-2").selectBoxIt({
+										showFirstOption: false
+									}).on('open', function () {
+										// Adding Custom Scrollbar
+										$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+									});
+								});
+							</script>
+				
+							<form role="form" method="post" id="pub-create-form">
+				
+				
+								<input type="text" class="form-control" id="title-pub" placeholder="Название" style="margin-bottom: 20px;">
+
+								<select class="form-control" id="category">
+									<option>Выберите категорию</option>
+									<% categories.forEach(cat => { %>
+										<option value="<%=cat.id%>"><%=cat.name%></option>
+									<%}) %>
+									
+									
+				
+								</select>
+				
+								<!-- <input class="btn btn-white" type="file" style="margin-top: 20px; width: 100%;"></input> -->
+								<br>
+				
+				
+								<div class="form-group">
+									<textarea class="form-control" rows="10" id="content-pub" placeholder="Текст статьи"></textarea>
+								</div>
+				
+								<button type="button" class="btn btn-secondary" onclick="savePublication()">Сохранить</button>
+								<button class="btn btn-red">Удалить</button>
+
+								<script>
+									function savePublication(){
+										const form = document.querySelector('#pub-create-form')
+										const title = document.querySelector('#title-pub').value
+										const category_id = document.querySelector('#category').value
+										const content = document.querySelector('#content-pub').value
+										fetch(`http://localhost:3000/admin/edit-publication/save?title=${title}&content=${content}&category_id=${category_id}`)
+										
+										location.href = 'http://localhost:3000/admin/publications'
+										
+										
+									}
+								</script>
+				
+							</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+								<!-- END Content -->
+								<%- include('../inc/admin-footer') %>
+					</div>
+			</div>
+			</div>
+			<%- include('../inc/admin-loader') %>
+				<%- include('../inc/admin-scripts') %>
+	</body>
+
+</html>
