@@ -19,7 +19,7 @@ Rourter.get('/youtube-channel/delete-channel/:channel_id', adminController.delet
 Rourter.get('/publications', adminController.GetPublicationList)
 Rourter.get('/edit-publication', adminController.editPublication)
 Rourter.get('/edit-publication/save', adminController.savePublication)
-Rourter.get('/publications/set-published/:id/:is', adminController.setVideoPublished)
+Rourter.get('/publications/set-published/:id/:is', adminController.setPublished)
 //Rourter.post('/edit-publication', adminController.savePublication)
 
 

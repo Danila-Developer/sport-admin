@@ -67,8 +67,8 @@ class AdminController{
    }
 
    async setPublished(req, res){
-      console.log(req.params.id)
       await AdminPublicationsService.setPublicationPublished(req.params.id, req.params.is)
+      res.status(200).send('ok')
    }
 
 
