@@ -24,7 +24,7 @@
                form = document.querySelector('add-channel-form')
                channelLinkForm = document.querySelector('[name="add-channel-input"]')
                const data = {channel_link: encodeURI(decodeURI(channelLinkForm.value))}
-               const url = 'http://localhost:3000/admin/youtube-channel/add-channel'
+               const url = 'http://87.236.22.250:3000/admin/youtube-channel/add-channel'
                axios.post(url, data)
                .then(() => {
                   location.reload();
@@ -48,7 +48,7 @@
 
          <!-- logo -->
          <div class="logo">
-            <a href="http://localhost:3000/admin" class="logo-expanded">
+            <a href="http://87.236.22.250:3000/admin" class="logo-expanded">
                <img src="assets/images/logo@2x.png" width="80" alt="" />
             </a>
 
@@ -95,7 +95,7 @@
             <ul>
                <% menuElements.Youtube.forEach(channel => { %>
                   <li>
-                     <a href="http://localhost:3000/admin/youtube-channel/<%=channel.channel_id%>">
+                     <a href="http://87.236.22.250:3000/admin/youtube-channel/<%=channel.channel_id%>">
                         <span class="title"><%= channel.channel_name %></span>
                      </a>
                   </li>
@@ -116,7 +116,7 @@
          </li>
          <% } %>
          <li>
-            <a href="http://localhost:3000/admin/publications">
+            <a href="http://87.236.22.250:3000/admin/publications">
                <i class="linecons-note"></i>
                <span class="title">Публикации</span>
             </a>
