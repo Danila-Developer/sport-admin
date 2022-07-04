@@ -63,12 +63,12 @@ class AdminController{
    async savePublication(req, res){
       console.log(req.query)
       await AdminPublicationsService.savePublication({title: req.query.title, content: req.query.content, category_id: req.query.category_id})
-      return res.rend('ok')
+      return res.send('ok')
    }
 
    async setPublished(req, res){
+      console.log(req.params.id)
       await AdminPublicationsService.setPublicationPublished(req.params.id, req.params.is)
-      res.status(200).send('ok')
    }
 
 

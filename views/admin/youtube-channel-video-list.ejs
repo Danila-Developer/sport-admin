@@ -27,9 +27,9 @@
 					<div class="modal-content">
 						<script>
 							function channelDelete(channel_id){
-								fetch(`http://localhost:3000/admin/youtube-channel/delete-channel/${channel_id}`)
+								fetch(`http://87.236.22.250:3000/admin/youtube-channel/delete-channel/${channel_id}`)
 							.then(()=>{
-								document.location.replace("http://localhost:3000/admin/")
+								document.location.replace("http://87.236.22.250:3000/admin/")
 							})
 						}
 
@@ -89,7 +89,7 @@
 
 							<script>
 								function publish_news(video_id, is_published){
-									fetch(`http://localhost:3000/admin/publiset-video-published?video_id=${video_id}&is_published=${is_published}`)
+									fetch(`http://87.236.22.250:3000/admin/set-video-published?video_id=${video_id}&is_published=${is_published}`)
 									.then(()=>{
 										location.reload()
 									})
