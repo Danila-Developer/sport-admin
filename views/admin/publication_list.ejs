@@ -45,7 +45,7 @@
 											<thead>
 												<tr>
 													<th style="white-space: nowrap">Название</th>
-													<th style="white-space: nowrap">Категория</th>
+													<!-- <th style="white-space: nowrap">Категория</th> -->
 													<th style="white-space: nowrap">Дата</th>
 													<th style="white-space: nowrap"></th>
 												</tr>
@@ -56,7 +56,7 @@
 													
 													<tr style="cursor: pointer" >
 														<td><%=pub.title%></td>
-														<td><%=pub.category[0].category_name%></td>
+														<!-- <td><%=pub.category[0].category_name%></td> -->
 														<td><%=pub.date%></td>
 														<% if(!pub.is_published) { %>
 														<td align="right"><button class="btn btn-primary btn-icon" style="width: 140px;" onclick="setPub('<%=pub.id%>', true)">

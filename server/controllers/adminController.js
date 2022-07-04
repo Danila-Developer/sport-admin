@@ -49,6 +49,7 @@ class AdminController{
    async GetPublicationList(req, res){
       const adminModel = new adminMod()
       const allPublications = await AdminPublicationsService.getAllPublications()
+      console.log(allPublications)
       const menuElements = await adminModel.getMenuElements()
       res.render('admin/publication_list', {menuEl: menuElements, allPublications})
    }
