@@ -102,7 +102,9 @@
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             
             <span>
-               John Smith
+               <% if (user) {%>
+                  <%=user.first_name%> <%=user.last_name%>
+               <% }%>
                <i class="fa-angle-down"></i>
             </span>
          </a>
@@ -113,10 +115,23 @@
             
             
             <li class="last">
-               <a href="extra-lockscreen.html">
+               <a id="logout-a" style="cursor: pointer;">
                   <i class="fa-lock"></i>
                   Logout
                </a>
+               <script>
+                  function logout(){
+                     document.querySelector('#logout-a').addEventListener('click', (e) => {
+                        e.preventDefault()
+                        fetch("http://<%=HOST%>:<%=PORT%>/api/auth/logout")
+                        .then(() => {
+                           location.href = "http://<%=HOST%>:<%=PORT%>/admin"
+                        })
+                     })
+                     
+                  }
+                  logout()
+               </script>
             </li>
          </ul>
       </li>

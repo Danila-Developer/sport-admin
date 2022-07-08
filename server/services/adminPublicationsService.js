@@ -4,7 +4,7 @@ const md5 = require('md5')
 class AdminPublicationsService{
 
    async getAllPublications(){
-      const allPublications = await PublicationModel.findAll({logging: false, raw: true, order: [['date', 'DESC']]})
+      const allPublications = await PublicationModel.findAll({logging: false, raw: true, order: [['createdAt', 'DESC']]})
       const newPub = await Promise.all(allPublications.map(async pub => {
          let pubCategory = await PublicationCategoryModel.findAll({logging: false, raw: true,
             where: {
@@ -12,6 +12,7 @@ class AdminPublicationsService{
             }
          })
          pub.category = pubCategory
+         pub.createdAt = pub.createdAt.split(' ')[0]
          return pub
       }))
       return newPub
@@ -47,6 +48,10 @@ class AdminPublicationsService{
 
    async setPublicationPublished(video_id, is_pub){
       await PublicationModel.update({is_published: is_pub}, {where: {id: video_id}})
+   }
+
+   async addCategory(category_name){
+      await PublicationCategoryModel.create({id: 'cooking', category_name, color: 'fd'})
    }
 }
 

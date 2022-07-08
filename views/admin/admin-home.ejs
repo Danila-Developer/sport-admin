@@ -7,7 +7,7 @@
 			<div class="page-container">
 				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
 					<div class="main-content">
-						<%- include('../inc/admin-navbar-user') %>
+						<%- include('../inc/admin-navbar-user', {HOST, PORT, user}) %>
 
 							<!-- Content -->
 							<%= menuEl.yt %>

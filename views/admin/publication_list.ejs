@@ -3,11 +3,65 @@
 <%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ' }) %>
 
 	<body class="page-body">
+		<div class="modal fade custom-width" id="modal-category">
+			<div class="modal-dialog" style="width: 60%;">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Добавить категорию</h4>
+					</div>
+					
+					<div class="modal-body">
+						
+						<form method="post" class="add-channel-form">
+							<input type="text" class="form-control" id="field-category" placeholder="Название категории" name="add-channel-input">
+						</form>
+						
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+						<button type="button" class="btn btn-info" onclick="addCategory()">Добавить</button>
+					</div>
+					<script>
+						function addCategory(){
+							input = document.querySelector('#field-category')
+							const data = {category_name: input.value}
+							console.log(data)
+							const url = 'http://<%=HOST%>:<%=PORT%>/admin/publications/add-category'
+
+							fetch('http://<%=HOST%>:<%=PORT%>/admin/publications/add-category', {
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								method: 'POST',
+								body: JSON.stringify(data)
+							}).then( ()=>{
+								location.reload()
+							})
+
+							
+							
+							
+						}
+		
+						
+		
+					</script>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
 		<%- include('../inc/admin-settings-pane') %>
 			<div class="page-container">
 				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
 					<div class="main-content">
-						<%- include('../inc/admin-navbar-user') %>
+						<%- include('../inc/admin-navbar-user', {HOST, PORT, user}) %>
 
 							<!-- Content -->
 
@@ -20,11 +74,14 @@
 									<p class="description">Добавьте публикации портала</p>
 								</div>
 								<div class="breadcrumb-env">
-									<a href="http://87.236.22.250:3000/admin/edit-publication">
+									<a href="http://<%=HOST%>:<%=PORT%>/admin/edit-publication">
 										<button class="btn btn-secondary">Добавить публикацию</button>
 									</a>
-									
+									<a href="javascript:;" onclick="jQuery('#modal-category').modal('show');" class="">
+									<button class="btn btn-info">Добавить категорию</button></a>
 								</div>
+								
+									
 				
 				
 				
@@ -57,7 +114,7 @@
 													<tr style="cursor: pointer" >
 														<td><%=pub.title%></td>
 														
-														<td><%=pub.date%></td>
+														<td><%=pub.createdAt%></td>
 														<% if(!pub.is_published) { %>
 														<td align="right"><button class="btn btn-primary btn-icon" style="width: 140px;" onclick="setPub('<%=pub.id%>', true)">
 																<span>Опубликовать</span>
@@ -71,7 +128,7 @@
 													</tr>
 													<script>
 														function setPub(pid, is_pub){
-															fetch(`http://localhost:3000/admin/publications/set-published/${pid}/${is_pub}`)
+															fetch(`http://<%=HOST%>:<%=PORT%>/admin/publications/set-published/${pid}/${is_pub}`)
 															.then(()=>{
 																location.reload()
 															})
