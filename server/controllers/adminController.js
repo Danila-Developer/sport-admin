@@ -5,6 +5,7 @@ const AdminPublicationsService = require('../services/adminPublicationsService')
 const config = require('../../config')
 const TokenService = require('../services/tokenService')
 const AuthService = require('../services/authService')
+const adminRssService = require('../services/adminRssService')
 
 
 const { HOST, PORT } = config
@@ -64,7 +65,6 @@ class AdminController {
       const user = await AuthService.getUserById(userId)
       const adminModel = new adminMod()
       const allPublications = await AdminPublicationsService.getAllPublications()
-      console.log(allPublications)
       const menuElements = await adminModel.getMenuElements()
       res.render('admin/publication_list', { menuEl: menuElements, allPublications, HOST, PORT, user })
    }
@@ -89,7 +89,6 @@ class AdminController {
    }
 
    async setPublished(req, res) {
-      console.log(req.params.id)
       await AdminPublicationsService.setPublicationPublished(req.params.id, req.params.is)
       res.sendStatus(200)
    }
@@ -97,6 +96,28 @@ class AdminController {
    async addCategory(req, res) {
       await AdminPublicationsService.addCategory(req.body.category_name)
       res.sendStatus(200)
+   }
+
+   async getRssList(req, res) {
+      const userId = TokenService.validateAccessToken(req.cookies.refreshToken).id
+      const user = await AuthService.getUserById(userId)
+      const adminModel = new adminMod()
+      const menuElements = await adminModel.getMenuElements()
+
+      const rssChannelPublicationList = await adminRssService.getAllRssChannelPublication(req.params.id)
+      const rssChannelName = await adminRssService.getRssChannelName(req.params.id)
+
+      return res.render('admin/admin-rss-list', { menuEl: menuElements, HOST, PORT, user, RSS: rssChannelPublicationList, rssChannelName })
+   }
+
+   async setRssPublished(req, res){
+      await adminRssService.setPublished(req.query.rss_id, req.query.is_published)
+      res.sendStatus(200)
+   }
+
+   async deleteRss(req, res){
+      console.log(req.params.id)
+      await adminRssService.deleteRssChannel(req.params.id)
    }
 
 

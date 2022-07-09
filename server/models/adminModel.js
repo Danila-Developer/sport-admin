@@ -33,10 +33,32 @@ const PublicationCategoryModel = sequelize.define('publication_category', {
     color: {type: DataTypes.STRING, primaryKey: true}
 })
 
+const RSSChannel = sequelize.define('rss_channel', {
+    id: {type: DataTypes.STRING, primaryKey: true},
+    channel_name: {type: DataTypes.STRING},
+    rss_link: {type: DataTypes.STRING}
+})
+
+const RSSPublication = sequelize.define('rss_publication', {
+    id: {type: DataTypes.STRING, primaryKey: true},
+    title: {type: DataTypes.STRING},
+    link: {type: DataTypes.STRING},
+    creator: {type: DataTypes.STRING},
+    content: {type: DataTypes.STRING},
+    content_snippet: {type: DataTypes.STRING},
+    categories: {type: DataTypes.STRING},
+    date: {type: DataTypes.STRING},
+    is_published: {type: DataTypes.BOOLEAN}
+})
+
+
+
 YoutubeChannelsModel.hasMany(YoutubeChannelVideosModel)
 YoutubeChannelVideosModel.belongsTo(YoutubeChannelsModel)
 PublicationCategoryModel.hasMany(PublicationModel)
 PublicationModel.belongsTo(PublicationCategoryModel)
+RSSChannel.hasMany(RSSPublication)
+RSSPublication.belongsTo(RSSChannel)
 
 
 
@@ -44,5 +66,7 @@ module.exports = {
     YoutubeChannelsModel,
     YoutubeChannelVideosModel,
     PublicationModel,
-    PublicationCategoryModel
+    PublicationCategoryModel,
+    RSSPublication,
+    RSSChannel
 }

@@ -121,20 +121,31 @@
                <span class="title">Публикации</span>
             </a>
             
+
+         <% if (menuElements.RSS){ %>   
          <li>
-            <a href="charts-main.html">
+            <a href="#">
                <i class="linecons-globe"></i>
                <span class="title">RSS</span>
             </a>
             <ul>
+
+               <% menuElements.RSS.forEach(rssChannel => { %>
                <li>
-                  <a href="charts-main.html">
-                     <span class="title">Reddit</span>
+                  <a href="http://<%=HOST%>:<%=PORT%>/admin/rss/list/<%=rssChannel.channel_id%>">
+                     <span class="title"><%=rssChannel.channel_name%></span>
                   </a>
                </li>
                
-               
+               <% }) %>
+               <!-- <li>
+                  <a href="#">
+                     <span class="title">Добавить RSS-канал</span>
+                  </a>
+               </li> -->
             </ul>
+         </li>
+         <% } %> 
          
       </ul>
       

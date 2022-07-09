@@ -24,6 +24,8 @@ Rourter.get('/edit-publication/save', adminAccessMiddleware, adminController.sav
 Rourter.get('/publications/set-published/:id/:is', adminAccessMiddleware, adminController.setPublished)
 //Rourter.post('/edit-publication', adminController.savePublication)
 Rourter.post('/publications/add-category', adminController.addCategory)
-
+Rourter.get('/rss/list/:id', adminAccessMiddleware, adminController.getRssList)
+Rourter.get('/rss/delete/:id', adminController.deleteRss)
+Rourter.get('/rss/set-published', adminController.setRssPublished)
 
 module.exports = Rourter

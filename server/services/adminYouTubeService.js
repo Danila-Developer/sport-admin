@@ -1,8 +1,8 @@
-const {YoutubeChannelsModel, YoutubeChannelVideosModel} = require('../models/adminModel')
+const {YoutubeChannelsModel, YoutubeChannelVideosModel, RSSPublication, RSSChannel} = require('../models/adminModel')
 const RSSParser = require('rss-parser');
 const axios = require('axios')
 const cheerio = require('cheerio');
-
+const config = require('../../config')
 const { urlencoded } = require('body-parser');
 
 
@@ -18,6 +18,11 @@ class adminModel {
       menuElements.Youtube = []
       res.forEach(row => {
          menuElements.Youtube.push({channel_id: row.dataValues.id, channel_name: row.dataValues.channel_name})
+      })
+      const rssRes = await RSSChannel.findAll({raw: true})
+      menuElements.RSS = []
+      rssRes.forEach(row => {
+         menuElements.RSS.push({channel_id: row.id, channel_name: row.channel_name})
       })
       return menuElements
    }
@@ -137,9 +142,9 @@ class adminModel {
             channelsId.forEach(async channel => {
                await this.fetchYoutubeChannel(channel, parser)
             })
-            await this.parseYoutubeChannel('https://www.youtube.com/user/pognalisho')
+            //await this.parseYoutubeChannel('https://www.youtube.com/user/pognalisho')
          }
-      }, 5000)
+      }, config.RSS_CHECK_INTERVAL)
    }
 
    async parseYoutubeChannel(link){
