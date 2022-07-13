@@ -18,7 +18,8 @@
          
          <% if (videos){ %>
             <% videos.forEach(vid => { %>
-               <a href="<%=vid.video_url%>" class="youtube-video-a">
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=vid.video_url.split('=')[1]%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <!-- <a href="<%=vid.video_url%>" class="youtube-video-a">
                   <div class="youtube-video">
                      <div class="video-name"><%=vid.video_name%></div>
                      <div class="dev"></div>
@@ -26,7 +27,7 @@
                      <div class="video-date"><%=vid.date%></div>
                      <div class="video-description"><%=vid.description%></div>
                   </div>
-               </a>
+               </a> -->
       
             <%})%>
       

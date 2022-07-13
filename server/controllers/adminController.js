@@ -107,7 +107,7 @@ class AdminController {
       const rssChannelPublicationList = await adminRssService.getAllRssChannelPublication(req.params.id)
       const rssChannelName = await adminRssService.getRssChannelName(req.params.id)
 
-      return res.render('admin/admin-rss-list', { menuEl: menuElements, HOST, PORT, user, RSS: rssChannelPublicationList, rssChannelName })
+      return res.render('admin/admin-rss-list', { menuEl: menuElements, HOST, PORT, user, RSS: rssChannelPublicationList, rssChannelName, rss_ch_id: req.params.id })
    }
 
    async setRssPublished(req, res){
@@ -117,7 +117,17 @@ class AdminController {
 
    async deleteRss(req, res){
       console.log(req.params.id)
+      console.log('---------------------------')
       await adminRssService.deleteRssChannel(req.params.id)
+      res.sendStatus(200)
+   }
+
+   async addRssChannel(req, res){
+      if (req.body.channel_name && req.body.channel_link){
+         await adminRssService.createRssChannel(req.body.channel_name, req.body.channel_link)
+      }
+      
+      res.sendStatus(200)
    }
 
 

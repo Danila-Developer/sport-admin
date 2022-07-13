@@ -57,7 +57,7 @@ class adminModel {
    }
 
    async setVideoPublishedById(video_id, is_pub){
-      console.log(video_id)
+     
       await YoutubeChannelVideosModel.update({is_published: is_pub}, {where: {id: video_id}})
    }
 
@@ -110,7 +110,7 @@ class adminModel {
             const date = feed.items[i].isoDate
             const preview_url = feed.items[i].media['media:thumbnail'][0]['$'].url
             const video_url = feed.items[i].link
-            const is_published = false
+            const is_published = true
             await YoutubeChannelVideosModel.create({
                id: video_id,
                video_name,
@@ -165,7 +165,7 @@ class adminModel {
             }
          })
          const allChannels = await this.getAllChannelsId()
-         console.log(allChannels + 'chen')
+         
          if (allChannels == null) {
             await YoutubeChannelsModel.create({
                id: channel_id,
@@ -174,9 +174,9 @@ class adminModel {
             })
          }
          if (!allChannels.indexOf(channel_id)){
-            console.log(1)
+            
          } else {
-            console.log(2)
+            
             await YoutubeChannelsModel.create({
                id: channel_id,
                channel_name: channel_name,

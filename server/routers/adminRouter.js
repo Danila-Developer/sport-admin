@@ -27,5 +27,6 @@ Rourter.post('/publications/add-category', adminController.addCategory)
 Rourter.get('/rss/list/:id', adminAccessMiddleware, adminController.getRssList)
 Rourter.get('/rss/delete/:id', adminController.deleteRss)
 Rourter.get('/rss/set-published', adminController.setRssPublished)
+Rourter.post('/rss/add-channel', adminController.addRssChannel)
 
 module.exports = Rourter

@@ -66,7 +66,7 @@ class AdminRssService {
                const content = feed.items[i].content || null
                
                const date = feed.items[i].isoDate.split('T')[0] || null
-               const is_published = false
+               const is_published = true
                
                
                await RSSPublication.create({
@@ -84,7 +84,7 @@ class AdminRssService {
             
          }  
       } catch(e){
-         console.log('Некорректный канал')
+         ///console.log('Некорректный канал')
       }
       
       
@@ -95,7 +95,7 @@ class AdminRssService {
 
       setInterval(async ()=> {
          const channelsId = await this.getAllChannelsId()
-         console.log(channelsId)
+         
          if (channelsId != null){
             channelsId.forEach(async channel => {
                await this.fetchRssChannel(channel, parser)
@@ -117,7 +117,7 @@ class AdminRssService {
    }
 
    async getAllRssChannelPublication(channel_id){
-      const rssPublications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, raw: true})
+      const rssPublications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, order: [['date', 'DESC']], raw: true})
       console.log(channel_id)
       return rssPublications
    }
@@ -128,6 +128,15 @@ class AdminRssService {
 
    async setPublished(id, is_pub){
       await RSSPublication.update({is_published: is_pub}, {where: {id: id}})
+   }
+
+   async createRssChannel(name, link){
+      const id = md5(new Date())
+      await RSSChannel.create({
+         id,
+         channel_name: name,
+         rss_link: link
+      })
    }
 
    

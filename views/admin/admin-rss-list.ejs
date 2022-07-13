@@ -16,9 +16,9 @@
                            <h1 class="title"><%=rssChannelName%></h1>
                            <p class="description"></p>
                         </div>
-                        <!-- <div class="breadcrumb-env">
+                        <div class="breadcrumb-env">
                            <a href="javascript:;" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" class="btn btn-red btn-single btn-sm">Удалить канал</a>
-                        </div> -->
+                        </div>
                         
             
                         
@@ -27,8 +27,8 @@
                         <div class="modal-dialog">
                            <div class="modal-content">
                               <script>
-                                 function channelDelete(channel_id){
-                                    fetch(`http://<%=HOST%>:<%=PORT%>/admin/rss/delete/${channel_id}`)
+                                 function channelDelete(){
+                                    fetch(`http://<%=HOST%>:<%=PORT%>/admin/rss/delete/<%=rss_ch_id%>`)
                                  .then(()=>{
                                     document.location.replace("http://<%=HOST%>:<%=PORT%>/admin/")
                                  })
@@ -47,7 +47,7 @@
                               
                               <div class="modal-footer">
                                  <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
-                                 <button type="button" class="btn btn-red"  onclick="channelDelete('<%=RSS.rssChannelId%>')">Удалить</button>
+                                 <button type="button" class="btn btn-red"  onclick="channelDelete()">Удалить</button>
                               </div>
                            </div>
                         </div>

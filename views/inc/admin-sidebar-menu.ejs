@@ -40,6 +40,58 @@
    </div>
 </div>
 
+<div class="modal fade custom-width" id="modal-rss">
+   <div class="modal-dialog" style="width: 60%;">
+      <div class="modal-content">
+         
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Добавить канал</h4>
+         </div>
+         
+         <div class="modal-body">
+            
+            <form method="post" class="add-channel-form">
+               <input type="text" class="form-control" id="rss-input-name" placeholder="Название канала в админ-панели" name="add-channel-input">
+               <input type="text" class="form-control" id="rss-input-link" placeholder="Ссылка на rss-канал" name="add-channel-input" style="margin-top: 20px;">
+            </form>
+            
+         </div>
+         
+         <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-info" onclick="addRssChannel()">Добавить</button>
+         </div>
+         <script>
+            function addYoutubeChannel(){
+               form = document.querySelector('add-channel-form')
+               channelLinkForm = document.querySelector('[name="add-channel-input"]')
+               const data = {channel_link: encodeURI(decodeURI(channelLinkForm.value))}
+               const url = 'http://<%=HOST%>:<%=PORT%>/admin/youtube-channel/add-channel'
+               axios.post(url, data)
+               .then(() => {
+                  location.reload();
+               });
+            }
+
+            function addRssChannel(){
+               const channelName = document.querySelector('#rss-input-name')
+               const channelLinkForm = document.querySelector('#rss-input-link')
+               const data = {channel_link: encodeURI(decodeURI(channelLinkForm.value)), channel_name: channelName.value}
+               const url = 'http://<%=HOST%>:<%=PORT%>/admin/rss/add-channel'
+               axios.post(url, data)
+               .then(() => {
+                  location.reload();
+               });
+            }
+
+            
+
+         </script>
+      </div>
+   </div>
+</div>
+
 <div class="sidebar-menu toggle-others fixed">
 		
    <div class="sidebar-menu-inner">
@@ -138,11 +190,10 @@
                </li>
                
                <% }) %>
-               <!-- <li>
-                  <a href="#">
-                     <span class="title">Добавить RSS-канал</span>
-                  </a>
-               </li> -->
+               <li>
+                  <a href="javascript:;" onclick="jQuery('#modal-rss').modal('show');" class="">
+                     <span class="title">Добавить RSS-канал</span></a>
+               </li>
             </ul>
          </li>
          <% } %> 
