@@ -63,6 +63,7 @@ class AuthService {
 
    async createSuperuser(first_name, last_name, email, password){
       const id = md5(new Date())
+      password = await bcrypt.hash(password, 3)
       await UserModel.create({id, first_name, last_name, email, password, is_active: true, is_admin: true})
    }
 
