@@ -44,6 +44,10 @@ class AuthController {
          next(e)
       }
    }
+
+   async createSuperuser(req, res){
+      await AuthService.createSuperuser(req.query.first_name,req.query.last_name, req.query.email, req.query.password )
+   }
 }
 
 module.exports = new AuthController()

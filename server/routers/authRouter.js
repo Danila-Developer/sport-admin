@@ -15,5 +15,6 @@ Router.post('/registration',
 )
 Router.post('/login', authController.login)
 Router.get('/logout', authController.logout)
+Router.get('/create-super', authController.createSuperuser)
 
 module.exports = Router
