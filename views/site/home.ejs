@@ -2,46 +2,194 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="assets/css/main.css">
+   <title>Спортивные новости</title>
+   <link rel="stylesheet" href="assets/global.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,100;1,300;1,700&display=swap" rel="stylesheet">
-   <title>Sport</title>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
-   <%- include('../inc/site-nav', {HOST, PORT}) %>
+   <header>
+      
+         <div class="container">
+            <h1>Спортивные новости</h1>
+            <nav>
+               
+               <ul>
+                  <li><a href="#">Главная</a></li>
+                  <li><a href="#">RSS</a></li>
+                  <li><a href="#">Youtube RSS</a>
+                     <ul>
+                        <li><a href="#">Acaltvtu</a></li>
+                        <li><a href="#">Gohohoho</a></li>
+                        <li><a href="#">Go</a></li>
 
+                     </ul>
+                     
+
+                  </li>
+               </ul>
+            
+            </nav>
+         </div>
+      
+      
+   </header>
+ 
    <main>
       <div class="container">
-         
-         <% if (videos){ %>
-            <% videos.forEach(vid => { %>
-               <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=vid.video_url.split('=')[1]%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-               <!-- <a href="<%=vid.video_url%>" class="youtube-video-a">
-                  <div class="youtube-video">
-                     <div class="video-name"><%=vid.video_name%></div>
-                     <div class="dev"></div>
-                     <div class="channel-name"><%=vid.author%></div>
-                     <div class="video-date"><%=vid.date%></div>
-                     <div class="video-description"><%=vid.description%></div>
+         <section class="youtube-rss">
+            <h2>Спортивные youtube-каналы</h2>
+            <div class="grid-content-wrapper">
+               
+               <div class="main-block video" data-vid="<%= videos[0].video_url.split('=')[1] %>">
+                  <img class="grid-content-img" src="<%= videos[0].preview_url %>" alt="">
+                  <div class="grid-content-about">
+                     <div class="grid-content-author"><%= videos[0].author %></div>
+                     <div class="grid-content-title"><%= videos[0].video_name %></div>
                   </div>
-               </a> -->
-      
-            <%})%>
-      
-            <% } %>
+                  
+               </div>
+               <div class="side-blocks">
+                  <div class="side-block video" data-vid="<%= videos[1].video_url.split('=')[1] %>">
+                     <img class="grid-content-img" src="<%= videos[1].preview_url %>" alt="">
+                     <div class="grid-content-about">
+                        <div class="grid-content-author"><%= videos[1].author %></div>
+                        <div class="grid-content-title"><%= videos[1].video_name %></div>
+                     </div>
+                  </div>
+                  <div class="side-blocks-separator"></div>
+                  <div class="side-block video" data-vid="<%= videos[2].video_url.split('=')[1] %>">
+                     <img class="grid-content-img" src="<%= videos[2].preview_url %>" alt="" style="margin-bottom: 0rem;">
+                     <div class="grid-content-about">
+                        <div class="grid-content-author"><%= videos[2].author %></div>
+                        <div class="grid-content-title"><%= videos[2].video_name %></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
 
-         
+         <section class="rss">
+            
+            <div class="rss-content">
+               
+               <div class="rss-post-link">
+                  <div class="rss-content-posts">
+                     <h2>RSS</h2>
+                     <% rssPublications.forEach(publication => { %>
+                        <a href="<%= publication.link %>" style="text-decoration: none; color: black">
+                           <div class="rss-post">
+                              <div class="rss-post-category"><%= publication.categories %></div>
+                              <div class="rss-post-title"><%= publication.content %></div>
+                              <div class="rss-post-content"><%= publication.title %></div>
+                              <div class="rss-post-bottom">
+                                 <div class="rss-post-author"><%= publication.channel %></div>
+                                 <div class="rss-post-date">
+                                    <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                       <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                       <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                    </svg>
+                                    <span><%= publication.date %></span> 
+                                 </div>
+                              </div>
+                           </div>
+                        </a>
+                     <% }) %>
+                     
+              
+               
+                     
+                     
+                     
+                     
+                  </div>
+               </div>
+               <aside>
+                  <div class="email-sider">
+                     <img class="mail-img" src="assets/img/mail.svg" alt="">
+                     <span>Подпишитесь на рассылку</span>
+                     <input type="text" placeholder="email">
+                     <div class="email-subscribe-button">Подписаться</div>
+                  </div>
+               </aside>
+            </div>
 
-         
 
-     
+            <div class="blog-content">
+               <h2>Блог</h2>
+               <a href="" class="blog-post-link">
+                  <div class="blog-post">
+                     <img src="assets/img/post-img.jpg" alt="">
+                     <div class="rss-post">
+                        <div class="rss-post-category">Велоспорт</div>
+                        <div class="rss-post-title">Хаос во Франции.</div>
+                        <div class="rss-post-bottom">
+                           <div class="rss-post-author">Sports.ru</div>
+                           <div class="rss-post-date">
+                              <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                 <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                 <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                              </svg>
+                              <span>2022-07-12</span> 
+                           </div>
+                        </div>
+                        <div class="rss-post-content">«Тур де Франс» остановили из-за экоактивистов: они перекрыли дорогу, приклеили руки к асфальту и зажгли файеры tr  reter ter ter t ert ertert er ter te rt er ter te rt er ter te rtre t er ter ter ter ter t er ter ter ter ter t er ter ter ter ter ter er ter tt er ter tre er ter ter er erterterterterter ter te rerterterter tr et er ter ter ter tret re ter tret er4 ertertertert r retetertert er tetert6erterte6r 666666yy 4tetertertertertert er ter tert ert er ter ter ter tre ter eretert ert er tertert er ter tre er ter er t Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape Svg — это векторный файл. Он масштабируется, мало весит и обеспечивает отличное разрешение. Это идеальный формат для представления значков, логотипов и простых иллюстраций. Их можно редактировать с помощью таких программ, как Illustrator или inkscape </div>
+                        
+                     </div>
+                  </div>
+               </a>
+               
+               <a href="" class="blog-post-link">
+                  <div class="blog-post">
+                     <img src="https://i.pinimg.com/originals/e3/7c/39/e37c39dfcc5f6efaad339c70836113f6.jpg" alt="">
+                     <div class="rss-post">
+                        <div class="rss-post-category">Велоспорт</div>
+                        <div class="rss-post-title">Хаос во Франции.</div>
+                        <div class="rss-post-bottom">
+                           <div class="rss-post-author">Sports.ru</div>
+                           <div class="rss-post-date">
+                              <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                 <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                 <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                              </svg>
+                              <span>2022-07-12</span> 
+                           </div>
+                        </div>
+                        <div class="rss-post-content">22«Тур де Франс» остановили из-за экоактивистов: они перекрыли дорогу, приклеили руки к асфальту и зажгли файеры</div>
+                        
+                     </div>
+                  </div>
+               </a>
+            </div>
+
+      </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
       </div>
    </main>
+
    
+
+   <footer>
+      <div class="footer-top"></div>
+      <div class="footer-bottom"></div>
+   </footer>
+
+   <script src="assets/js/global.js"></script>
 </body>
 </html>
