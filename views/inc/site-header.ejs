@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Спортивные новости</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="assets/global.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+   <header>
+      
+         <div class="container">
+            <h1>Спортивные новости</h1>
+            <div class="header-bottom">
+               <nav>
+               
+                  <ul>
+                     <li><a href="#">Главная</a></li>
+                     <li><a href="#">RSS</a></li>
+                     <li><a href="#">Youtube RSS</a>
+                        <ul>
+                           <li><a href="#">Acaltvtu</a></li>
+                           <li><a href="#">Gohohoho</a></li>
+                           <li><a href="#">Go</a></li>
+   
+                        </ul>
+                        
+   
+                     </li>
+                  </ul>
+               
+               </nav>
+               
+               <div class="header-login">
+                  <% if (user) { %>
+                     <div class="user">
+                        <img src="assets/img/user.svg" alt="">
+                        <div class="user-name"><%= user.first_name %> <%= user.last_name %></div>
+                        <div class="user-menu">
+                           <ul>
+                              <li id="user-logout">Выйти</li>
+                              
+                           </ul>
+                        </div>
+                        <a href="<%= `http://${HOST}:${PORT}/blog/create` %>"><div class="add-publication-button">&#43;</div></a>
+                     </div>
+                     
+                     <%} else {%>
+                        <span class="registration-span">Регистрация</span>
+                        <span class="login-span">Войти</span>
+                     <%}%>
+                  
+                  
+               </div>
+                  
+               
+            </div>
+            
+         </div>
+      
+      
+   </header>

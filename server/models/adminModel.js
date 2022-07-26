@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
+const {UserModel} = require('./userModel')
 
 const YoutubeChannelsModel = sequelize.define('youtube_channels', {
     id: {type: DataTypes.STRING, primaryKey: true},
@@ -59,7 +60,8 @@ PublicationCategoryModel.hasMany(PublicationModel)
 PublicationModel.belongsTo(PublicationCategoryModel)
 RSSChannel.hasMany(RSSPublication)
 RSSPublication.belongsTo(RSSChannel)
-
+UserModel.hasMany(PublicationModel)
+PublicationModel.belongsTo(UserModel)
 
 
 module.exports = {

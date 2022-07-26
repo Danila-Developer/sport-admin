@@ -22,11 +22,12 @@ app.use('/admin', express.static(path.resolve(__dirname, '../admin_static')))
 app.use('/admin/youtube-channel', express.static(path.resolve(__dirname, '../admin_static')))
 app.use('/admin/rss/list', express.static(path.resolve(__dirname, '../admin_static')))
 app.use('/', express.static(path.resolve(__dirname, '../views/site')))
+app.use('/blog', express.static(path.resolve(__dirname, '../views/site')))
 
 app.set('view engine', 'ejs')
 //app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}))
+app.use(express.json({limit: '10mb'}));
+app.use(express.urlencoded({extended: false, limit: '10mb'}))
 app.use(cookieParser())
 app.use('/admin', adminRouter)
 app.use('/api/auth', authRouter)

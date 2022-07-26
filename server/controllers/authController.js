@@ -10,6 +10,7 @@ class AuthController {
          const errors = validationResult(req)
          if (!errors.isEmpty()) {
             return next(apiError.BadRequest('Ошибка при валидации', errors.array()))
+            
          }
 
          const { first_name, last_name, email, password } = req.body
@@ -19,6 +20,7 @@ class AuthController {
          res.json(userData)
       } catch (e) {
          next(apiError.BadRequest(`Пользователь ${req.body.email} уже зарегистрирован.`))
+         
       }
    }
 

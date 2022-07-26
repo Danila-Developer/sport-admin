@@ -1,0 +1,24 @@
+<%- include('../inc/site-header', {}) %>
+<link rel="stylesheet" href="assets/create-post.css">
+
+<main>
+   <div class="container">
+      <input type="text" placeholder="Заголовок" id="title-input">
+      <textarea id="content-area" rows="10" placeholder="Текст публикации"></textarea>
+      <div class="category-block"><input type="text" placeholder="Категория" id="category-input"></div>
+      <div class="image-upload">
+         <label for="image-upload-input" id="image-upload-label">Загрузить изображение</label>
+         <img src="assets/img/image-uploaded.svg" alt="" id="upload-done-img">
+         <input type="file" accept=".jpg, .png" id="image-upload-input">
+      </div>
+      <div class="pubtication-button-wrapper">
+         <div class="publication-button">Опубликовать</div>
+      </div>
+      
+   </div>
+   
+</main>
+
+
+<script src="assets/js/createPost.js"></script>
+<%- include('../inc/site-footer', {}) %>
