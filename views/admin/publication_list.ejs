@@ -28,7 +28,6 @@
 						function addCategory(){
 							input = document.querySelector('#field-category')
 							const data = {category_name: input.value}
-							console.log(data)
 							const url = 'http://<%=HOST%>:<%=PORT%>/admin/publications/add-category'
 
 							fetch('http://<%=HOST%>:<%=PORT%>/admin/publications/add-category', {

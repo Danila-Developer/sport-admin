@@ -1,4 +1,4 @@
-<%- include('../inc/site-header', {user}) %>
+<%- include('../inc/site-header', {user, HOST, PORT}) %>
  
    <main>
       <div class="container">
@@ -80,42 +80,41 @@
                      
                   </div>
                </div>
-               <aside>
-                  <div class="email-sider">
-                     <img class="mail-img" src="assets/img/mail.svg" alt="">
-                     <span>Подпишитесь на рассылку</span>
-                     <input type="text" placeholder="email">
-                     <div class="email-subscribe-button">Подписаться</div>
-                  </div>
-               </aside>
+               <%- include('../inc/site-sider', {}) %>
             </div>
 
 
             <div class="blog-content">
                <h2>Блог</h2>
-               
-               <a href="" class="blog-post-link">
-                  <div class="blog-post">
-                     <img src="https://i.pinimg.com/originals/e3/7c/39/e37c39dfcc5f6efaad339c70836113f6.jpg" alt="">
-                     <div class="rss-post">
-                        <div class="rss-post-category">Велоспорт</div>
-                        <div class="rss-post-title">Хаос во Франции.</div>
-                        <div class="rss-post-bottom">
-                           <div class="rss-post-author">Sports.ru</div>
-                           <div class="rss-post-date">
-                              <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-                                 <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-                                 <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-                              </svg>
-                              <span>2022-07-12</span> 
+
+               <% publications.forEach(pub => {%>
+                  <a href="http://<%= HOST%>:<%=PORT%>/blog/<%= pub.id%>" class="blog-post-link">
+                     <div class="blog-post">
+                        <img src="<%= pub.img_url %>" alt="">
+                        <div class="rss-post">
+                           <div class="rss-post-category"><%= pub.category %></div>
+                           <div class="rss-post-title"><%= pub.title %></div>
+                           <div class="rss-post-bottom">
+                              <div class="rss-post-author"><%= pub.user %></div>
+                              <div class="rss-post-date">
+                                 <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                    <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                    <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                 </svg>
+                                 <span><%= pub.date %></span> 
+                              </div>
                            </div>
+                           <div class="rss-post-content"><%= pub.content %></div>
+                           
                         </div>
-                        <div class="rss-post-content">22«Тур де Франс» остановили из-за экоактивистов: они перекрыли дорогу, приклеили руки к асфальту и зажгли файеры</div>
-                        
                      </div>
-                  </div>
-               </a>
+                  </a>
+               <% }) %>
+               
+               
+
+
             </div>
 
       </section>
@@ -134,6 +133,8 @@
 
       </div>
    </main>
+
+   
 
 
    <%- include('../inc/site-footer', {}) %>

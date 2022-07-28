@@ -1,5 +1,6 @@
 
 const { YoutubeChannelVideosModel, YoutubeChannelsModel, RSSChannel, RSSPublication, PublicationCategoryModel, PublicationModel } = require('../models/adminModel')
+const { UserModel } = require('../models/userModel')
 const md5 = require('md5')
 
 class SiteService {
@@ -85,6 +86,29 @@ class SiteService {
          }, 1000)
       })
 
+   }
+
+   async getPublications(author_id = null, limit, id = null) {
+      let pubList
+      if (author_id == null) {
+         pubList = await PublicationModel.findAll({ where: { is_published: true }, order: [['date', 'DESC']], raw: true, limit: limit })
+      } else {
+         pubList = await PublicationModel.findAll({ where: { is_published: true, userId: author_id }, order: [['date', 'DESC']], raw: true, limit: limit })
+      }
+      if (id != null) {
+         pubList = await PublicationModel.findAll({ where: { is_published: true, id: id }, order: [['date', 'DESC']], raw: true, limit: limit })
+      }
+      for (let i = 0; i < pubList.length; i++) {
+         const user = await UserModel.findOne({ where: { id: pubList[i].userId }, raw: true })
+         pubList[i]['user'] = user.first_name + ' ' + user.last_name
+      }
+      for (let i = 0; i < pubList.length; i++) {
+         const category = await PublicationCategoryModel.findOne({ where: { id: pubList[i].publicationCategoryId }, raw: true })
+         pubList[i]['category'] = category.category_name
+      }
+
+
+      return pubList
    }
 }
 

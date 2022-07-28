@@ -20,7 +20,7 @@ module.exports = function (req, res, next){
    if (userData.is_admin) {
       next()
    } else {
-      res.render('admin/publication_list')
+      res.render('admin/admin-login', {HOST, PORT})
       //res.sendStatus(403)
    }
 

@@ -25,11 +25,11 @@ class SiteController{
       } catch {
          user = null
       }
-      
+      const publications = await SiteService.getPublications(null, 10)
       const videos = await SiteService.getVideoList(null, 3)
       const rssPublications = await SiteService.getRssPublications(null, 5)
-      console.log(rssPublications)
-      return res.render('site/home', {videos, rssPublications, HOST, PORT, user})
+
+      return res.render('site/home', {videos, rssPublications, HOST, PORT, user, publications})
    }
 
    async getCreateBlog(req, res) {
@@ -46,6 +46,19 @@ class SiteController{
    async postCreateBlog(req, res) {
       await SiteService.createBlogPublication(req.body, req.userId)
       return res.sendStatus(200)
+   }
+
+   async getSingeBlog(req, res) {
+      let user
+      try {
+         const userId = TokenService.validateAccessToken(req.cookies.refreshToken).id
+         user = await AuthService.getUserById(userId)
+      } catch {
+         user = null
+      }
+      const publication = await SiteService.getPublications(null, 1, req.params.id)
+      
+      return res.render('site/single-blog', { HOST, PORT, user, publication})
    }
 }
 

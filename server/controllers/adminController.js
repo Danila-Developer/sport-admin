@@ -6,8 +6,6 @@ const config = require('../../config')
 const TokenService = require('../services/tokenService')
 const AuthService = require('../services/authService')
 const adminRssService = require('../services/adminRssService')
-
-
 const { HOST, PORT } = config
 
 class AdminController {

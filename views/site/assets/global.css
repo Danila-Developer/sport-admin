@@ -21,22 +21,22 @@ main {
    min-height: 100vh;
 }
 
-.container{
+.container {
    margin: 0 auto;
    max-width: 1000px;
    padding: 0 1rem;
    height: 100%;
 }
 
-.grid-content-wrapper{
-   
+.grid-content-wrapper {
+
    height: 15rem;
    width: 100%;
    display: flex;
 }
 
-main{
-   
+main {
+
    margin-top: 1rem;
    height: 100%;
    width: 100%;
@@ -60,7 +60,7 @@ main{
    background-color: brown;
 }
 
-.main-block{
+.main-block {
    width: 65%;
    height: 15rem;
    overflow: hidden;
@@ -69,21 +69,21 @@ main{
    align-items: center;
    margin-right: 0.2rem;
    position: relative;
-   
+
 }
 
-.side-blocks{
+.side-blocks {
    display: flex;
    flex-direction: column;
    width: 35%;
 }
 
-.side-blocks-separator{
+.side-blocks-separator {
    height: 0.2rem;
 }
 
 
-.side-block{
+.side-block {
    flex: 1 1 0;
    display: flex;
    justify-content: center;
@@ -97,22 +97,22 @@ main{
 
 
 
-.main-block::before{
+.main-block::before {
    content: '';
    height: 0%;
    width: 100%;
-   box-shadow: 0px 0 0.5rem 6rem rgba(0, 0, 0, .7 );
+   box-shadow: 0px 0 0.5rem 6rem rgba(0, 0, 0, .7);
    bottom: 0;
    left: 0;
    position: absolute;
    z-index: 1;
 }
 
-.grid-content-author{
+.grid-content-author {
    font-weight: 500;
 }
 
-.grid-content-author::before{
+.grid-content-author::before {
    display: inline-block;
    content: '';
    height: 0.5rem;
@@ -122,28 +122,28 @@ main{
    background-color: brown;
 }
 
-.grid-content-title{
+.grid-content-title {
    font-size: 0.7rem;
    font-weight: 400;
-   
+
    color: white;
-   
+
    z-index: 2;
-   
+
 }
 
-.side-block::before{
+.side-block::before {
    content: '';
    height: 0%;
    width: 100%;
-   box-shadow: 0px 0px 1rem 4rem rgba(0, 0, 0, .8 );
+   box-shadow: 0px 0px 1rem 4rem rgba(0, 0, 0, .8);
    bottom: 0;
    left: 0;
    position: absolute;
    z-index: 1;
 }
 
-.grid-content-about{
+.grid-content-about {
    position: absolute;
    color: white;
    bottom: 0.7rem;
@@ -151,14 +151,14 @@ main{
    z-index: 2;
 }
 
-.grid-content-img{
+.grid-content-img {
    display: block;
    width: 100%;
    box-shadow: inset 0px 0px 60px 10px #000;
    position: relative;
 }
 
-.main-block::after{
+.main-block::after {
    content: 'Смотреть';
    color: white;
    text-align: center;
@@ -169,17 +169,17 @@ main{
    top: 0;
    left: 0;
    z-index: 3;
-   background-color: rgba(0, 0, 0, .6 );
+   background-color: rgba(0, 0, 0, .6);
    transition: all .3s;
    opacity: 0;
    cursor: pointer;
 }
 
-.main-block:hover::after{
+.main-block:hover::after {
    opacity: 100;
 }
 
-.side-block::after{
+.side-block::after {
    content: 'Смотреть';
    color: white;
    text-align: center;
@@ -190,13 +190,13 @@ main{
    top: 0;
    left: 0;
    z-index: 3;
-   background-color: rgba(0, 0, 0, .6 );
+   background-color: rgba(0, 0, 0, .6);
    transition: all .3s;
    opacity: 0;
    cursor: pointer;
 }
 
-.side-block:hover:after{
+.side-block:hover:after {
    opacity: 100;
 }
 
@@ -206,7 +206,7 @@ nav {
    background-color: white;
    height: 2rem;
    line-height: 2rem;
-   
+
 }
 
 nav ul li {
@@ -215,40 +215,40 @@ nav ul li {
    margin-right: 2rem;
 }
 
-nav  > ul li a {
+nav>ul li a {
    display: block;
    text-decoration: none;
    color: black;
    z-index: 4;
-   
+
    font-size: 0.8rem;
-   
+
    font-weight: 500;
 }
 
-nav > ul {
+nav>ul {
    display: flex;
-   
+
 }
 
-nav  ul  ul {
+nav ul ul {
    display: none;
    position: absolute;
    background-color: white;
    z-index: 6;
    border-radius: 0.1rem;
-   
+
 }
 
 nav ul li ul li {
-   margin-right: 0rem;  
+   margin-right: 0rem;
 }
 
-nav ul li ul a{
+nav ul li ul a {
    line-height: 1rem;
    margin: 0.2rem 0;
    padding: 0 0.8rem;
-   
+
 }
 
 nav ul li ul a:hover {
@@ -256,7 +256,7 @@ nav ul li ul a:hover {
    color: white;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
    color: #FF4545;
 }
 
@@ -268,22 +268,22 @@ nav ul li:hover ul {
 
 header {
    background-color: white;
-   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, .1 );
+   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, .1);
 }
 
 
-.rss-content{
+.rss-content {
    display: flex;
    margin-top: 1.5rem;
 }
 
 .rss-content-posts {
-   
+
    flex: 1 0 auto;
 }
 
-.rss-content aside {
-   
+aside {
+
    margin-left: 0.5rem;
    background-color: #FAFAFA;
    display: flex;
@@ -292,7 +292,7 @@ header {
    flex-direction: column;
 }
 
-.email-sider{
+.email-sider {
    height: 10rem;
    background-color: white;
    width: 12rem;
@@ -317,7 +317,7 @@ header {
    margin-top: 0.4rem;
 }
 
-.email-sider span{
+.email-sider span {
    margin-top: 0.5rem;
    font-size: 0.7rem;
    font-weight: 500;
@@ -335,7 +335,7 @@ header {
    line-height: 1rem;
 }
 
-.email-subscribe-button:hover:after{
+.email-subscribe-button:hover:after {
    opacity: 100;
 }
 
@@ -353,7 +353,7 @@ header {
    transition: .3s all;
    border-radius: 0.5rem;
    text-align: center;
-   
+
    cursor: pointer;
    height: 100%;
    width: 100%;
@@ -363,7 +363,7 @@ header {
 
 
 
-.mail-img{
+.mail-img {
    display: block;
    position: absolute;
    top: -0.5rem;
@@ -372,17 +372,17 @@ header {
    height: 3.2rem;
 }
 
-.rss-post-link{
+.rss-post-link {
    text-decoration: none;
    color: black;
    font-size: 0.8rem;
 }
 
-.rss-post-category{
+.rss-post-category {
    font-size: 0.6rem;
 }
 
-.rss-post-category::before{
+.rss-post-category::before {
    display: inline-block;
    content: '';
    height: 0.5rem;
@@ -392,29 +392,29 @@ header {
    background-color: brown;
 }
 
-.rss-post-title{
+.rss-post-title {
    margin-top: 0.5rem;
    font-weight: 500;
 }
 
-.rss-post-bottom{
+.rss-post-bottom {
    display: flex;
    color: #B1B1B1;
    margin-top: 0.3rem;
-   
+
 }
 
-.rss-post-content{
+.rss-post-content {
    margin-top: 0.3rem;
 }
 
-.rss-post{
+.rss-post {
    border-bottom: 0.01rem dashed #B1B1B1;
    margin-bottom: 1rem;
    padding-bottom: 0.2rem;
 }
 
-.rss-post-date svg{
+.rss-post-date svg {
    height: 0.8rem;
    width: auto;
    margin-left: 0.5rem;
@@ -426,7 +426,7 @@ header {
    align-items: center;
 }
 
-.rss-post-date span{
+.rss-post-date span {
    margin-left: 0.2rem;
 }
 
@@ -468,7 +468,7 @@ header h1::after {
 }
 
 
-.blog-post{
+.blog-post {
    font-size: 0.8rem;
    display: flex;
    border-bottom: 0.01rem dashed #B1B1B1;
@@ -476,8 +476,9 @@ header h1::after {
    padding-bottom: 0.5rem;
 }
 
-.blog-post .rss-post{
+.blog-post .rss-post {
    border-bottom: none;
+   margin-bottom: 0.1rem;
 }
 
 .blog-post img {
@@ -485,7 +486,7 @@ header h1::after {
    width: 16rem;
    object-fit: cover;
    aspect-ratio: 16/9;
-   
+
    margin-right: 0.5rem;
 }
 
@@ -494,15 +495,15 @@ header h1::after {
    text-decoration: none;
 }
 
-.rss-post-content{
-   
+.rss-post-content {
+
    display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
+   -webkit-line-clamp: 5;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
 }
 
-.footer-top{
+.footer-top {
    background-color: #282828;
    height: 5rem;
 }
@@ -512,20 +513,20 @@ header h1::after {
    height: 2rem;
 }
 
-.youtube-watch-wrapper{
+.youtube-watch-wrapper {
    height: 100vh;
    width: 100%;
    position: absolute;
-   top:0;
+   top: 0;
    left: 0;
-   background-color: rgba(0, 0, 0, .9 );
+   background-color: rgba(0, 0, 0, .9);
    z-index: 6;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-.watch-video iframe{
+.watch-video iframe {
    height: 80vh;
    max-width: 80vw;
    aspect-ratio: 560/315;
@@ -544,13 +545,13 @@ header h1::after {
    right: 1rem;
 }
 
-.login-wrapper{
+.login-wrapper {
    height: 100%;
    width: 100%;
    position: absolute;
-   top:0;
+   top: 0;
    left: 0;
-   background-color: rgba(0, 0, 0, .9 );
+   background-color: rgba(0, 0, 0, .9);
    z-index: 6;
    display: flex;
    justify-content: center;
@@ -559,7 +560,7 @@ header h1::after {
    transition: .2s all;
 }
 
-.login-block{
+.login-block {
    width: 15rem;
    height: 10rem;
    background-color: white;
@@ -573,11 +574,11 @@ header h1::after {
    transform: translateY(-50%);
 }
 
-.login-block .close svg{
+.login-block .close svg {
    fill: black;
 }
 
-.login-block .close{
+.login-block .close {
    top: 0.2rem;
    right: 0.2rem;
 }
@@ -609,12 +610,11 @@ header h1::after {
    line-height: 1rem;
 }
 
-.login-button:hover:after{
+.login-button:hover:after {
    opacity: 100;
 }
-.login-button:hover{
-   
-}
+
+.login-button:hover {}
 
 .login-button::after {
    opacity: 0;
@@ -630,13 +630,13 @@ header h1::after {
    transition: .3s all;
    border-radius: 0.5rem;
    text-align: center;
-   
+
    cursor: pointer;
    height: 100%;
    width: 100%;
 }
 
-.header-bottom{
+.header-bottom {
    display: flex;
    justify-content: space-between;
    font-size: 0.7rem;
@@ -646,20 +646,20 @@ header h1::after {
 .header-bottom span {
    line-height: 1rem;
    cursor: pointer;
-   
+
 }
 
-.header-bottom span:hover{
+.header-bottom span:hover {
    color: #FF4545;
 }
 
-.registration-wrapper{
+.registration-wrapper {
    height: 100%;
    width: 100%;
    position: absolute;
-   top:0;
+   top: 0;
    left: 0;
-   background-color: rgba(0, 0, 0, .9 );
+   background-color: rgba(0, 0, 0, .9);
    z-index: 6;
    display: flex;
    justify-content: center;
@@ -668,7 +668,7 @@ header h1::after {
    transition: .2s all;
 }
 
-.registration-wrapper .login-block{
+.registration-wrapper .login-block {
    height: 15rem;
 }
 
@@ -680,14 +680,14 @@ header h1::after {
 }
 
 
-.user img{
+.user img {
    height: 0.7rem;
    display: block;
    margin-right: 0.2rem;
-   
+
 }
 
-.user-name:hover ~ .user-menu{
+.user-name:hover~.user-menu {
    opacity: 100;
 }
 
@@ -695,7 +695,7 @@ header h1::after {
    opacity: 100;
 }
 
-.user-menu{
+.user-menu {
    display: block;
    position: absolute;
    top: 1.2rem;
@@ -712,7 +712,7 @@ header h1::after {
 }
 
 .user-menu ul li {
-   
+
    padding: 0 0.6rem;
 }
 
@@ -721,7 +721,7 @@ header h1::after {
    color: white
 }
 
-.error-message{
+.error-message {
    position: absolute;
    top: 1rem;
    right: 1rem;
@@ -740,13 +740,13 @@ header h1::after {
    height: 1.4rem;
    font-size: 1.6rem;
    line-height: 1.4rem;
-   box-shadow: 0 0 1rem 0.01rem rgba(0, 0, 0, .2 );
+   box-shadow: 0 0 1rem 0.01rem rgba(0, 0, 0, .2);
    width: 1.4rem;
    text-align: center;
    border-radius: 0.2rem;
    margin-left: 0.4rem;
    opacity: 100;
-   
+
    position: relative;
 }
 
@@ -758,10 +758,10 @@ header h1::after {
 .add-publication-button::before {
    content: '+';
    position: absolute;
-   top:0;
+   top: 0;
    left: 0;
    font-size: 1.6rem;
-   box-shadow: 0 0 1rem 0.01rem rgba(0, 0, 0, .2 );
+   box-shadow: 0 0 1rem 0.01rem rgba(0, 0, 0, .2);
    text-align: center;
    border-radius: 0.2rem;
    opacity: 0;
@@ -772,59 +772,105 @@ header h1::after {
 }
 
 
-.add-publication-button:hover::before{
+.add-publication-button:hover::before {
    opacity: 100;
    background-color: #FF4545;
    color: white;
 }
 
 
-@media (max-width: 766px){
-   html{
+@media (max-width: 766px) {
+   html {
       font-size: 18px;
    }
-   .grid-content-wrapper{
+
+   .grid-content-wrapper {
       flex-direction: column;
       height: 36rem;
    }
 
-   .main-block{
+   .main-block {
       width: 100%;
       height: 12rem;
       margin-bottom: 0.2rem;
    }
 
-   .main-block::after{
+   .main-block::after {
       line-height: 12rem;
    }
 
-   .side-blocks{
+   .side-blocks {
       width: 100%;
       height: 24rem;
    }
 
-   .side-block{
+   .side-block {
       flex: none;
       width: 100%;
       height: 12rem;
       margin-bottom: 0.2rem;
    }
 
-   .side-block::after{
+   .side-block::after {
       line-height: 12rem;
    }
 
-   .blog-post{
+   .blog-post {
       flex-direction: column;
    }
 
    .blog-post img {
       width: 100%;
-      
+
    }
 
-   .rss-content aside {
+   aside {
       display: none;
-      
+
    }
+
+   .blog-post .rrs-post{
+      margin-bottom: 0.3rem;
+   }
+}
+
+.subscribe-block {
+   display: flex;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+}
+
+.subscribe-block img{
+   cursor: pointer;
+   display: block;
+   height: 1.5rem;
+   margin-right: 0.5rem;
+}
+
+.footer-bottom{
+   font-size: 0.8rem;
+   color: white;
+   line-height: 2rem;
+}
+
+.telegram {
+   height: 8rem;
+}
+
+.telegram img {
+   transform: none;
+   right: -0.5rem;
+}
+
+.telegram .email-subscribe-button::after{
+   content: 'Перейти';
+}
+
+.email-wrapper{
+   opacity: 0;
+}
+
+.registration-wrapper .login-block.email-block {
+   height: 7rem;
 }

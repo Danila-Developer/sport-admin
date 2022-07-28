@@ -54,11 +54,11 @@ main .img-block::after {
    flex: 1 0 0;
 }
 
-aside{
+/* aside{
    width: 15rem;
    height: 200px;
    background-color: #FAFAFA
-}
+} */
 
 .publication-body{
    display: block;

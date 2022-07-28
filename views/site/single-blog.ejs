@@ -1,0 +1,44 @@
+<%- include('../inc/site-header', {user, HOST, PORT}) %>
+<link rel="stylesheet" href="assets/single-blog.css">
+   <main>
+      <div class="publication-top">
+         <div class="img-block">
+            <img src="<%= publication[0].img_url%>" alt="" class="">
+            <div class="container">
+               <div class="publication-header">
+                  <div class="rss-post-category"><%= publication[0].category%></div>
+                  <div class="rss-post-title"><%= publication[0].title %></div>
+                  <div class="rss-post-bottom">
+                     <div class="rss-post-author"><%= publication[0].user%></div>
+                     <div class="rss-post-date">
+                        <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                           <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                           <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                        </svg>
+                        <span><%= publication[0].date%></span> 
+                     </div>
+                  </div>
+
+               </div>
+               
+            </div>
+         </div>
+         
+         
+         
+      </div>
+      
+      <div class="container">
+         <div class="publication-wrapper">
+            <div class="publication-body">
+               <%= publication[0].content%>
+            </div>
+            <%- include('../inc/site-sider', {}) %>
+         </div>
+         
+      </div>
+
+   </main>
+
+<%- include('../inc/site-footer', {}) %>

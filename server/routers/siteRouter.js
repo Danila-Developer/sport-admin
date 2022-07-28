@@ -9,6 +9,7 @@ Router.get('/rss', SiteController.getRssList)
 Router.get('/', SiteController.getHome)
 Router.get('/blog/create', userAccess, SiteController.getCreateBlog)
 Router.post('/blog/create', userAccess, SiteController.postCreateBlog)
+Router.get('/blog/:id', SiteController.getSingeBlog)
 
 
 
