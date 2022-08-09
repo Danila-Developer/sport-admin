@@ -43,7 +43,6 @@ class AdminController {
    async addYoutubeChannel(req, res) {
       // const adminModel = new adminMod()
       // const error = await adminModel.parseYoutubeChannel(req.body.channel_link)
-      // console.log(error)
       // if (error == 'error') return res.status(500).send('err')
       // else return res.status(200).send('ok')
       const adminModel = new adminMod()
@@ -114,8 +113,6 @@ class AdminController {
    }
 
    async deleteRss(req, res){
-      console.log(req.params.id)
-      console.log('---------------------------')
       await adminRssService.deleteRssChannel(req.params.id)
       res.sendStatus(200)
    }

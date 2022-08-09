@@ -7,9 +7,8 @@ const {HOST, PORT} = config
 
 module.exports = function (req, res, next){
    const {refreshToken} =  req.cookies
-   console.log(refreshToken)
    const userData = TokenService.validateAccessToken(refreshToken)
-   console.log(userData)
+
 
    
 

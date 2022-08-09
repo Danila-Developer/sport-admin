@@ -5,13 +5,6 @@ const md5 = require('md5')
 
 class AdminRssService {
 
-   async testChannel(){
-      //let parser = new RSSParser()
-     // let feed = await parser.parseURL('http://vz.ru/rss.xml')
-      //console.log(feed)
-   }
-
-
    async getAllChannelsId(){
       const channelsId = await RSSChannel.findAll({
          attributes: ['id'],
@@ -36,7 +29,7 @@ class AdminRssService {
          },
          attributes: ['title'],
          raw: true,
-         order: [['createdAt', 'ASC']],
+         order: [['createdAt', 'DESC']],
          limit: 1
       })
       if (lastRssPublicationTitle.length) return lastRssPublicationTitle[0].title
@@ -48,24 +41,43 @@ class AdminRssService {
       try {
          const lastRssPublicationTitle = (await this.getLastRssPublicationTitle(channel_id))
          let feed = await parser.parseURL((await RSSChannel.findOne({where: {id: channel_id}, raw: true})).rss_link)
-         
+
+         const publications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, raw: true, order: [['createdAt', 'DESC']], offset: 30})
+         if (publications.length) {
+            publications.forEach(async pub => {
+               await RSSPublication.destroy({where: {id: pub.id}})
+            })  
+         }
+         const newFeed = []
          for (let i = 0; i < feed.items.length; i++) {
-            if (lastRssPublicationTitle != feed.items[i].title){
+            if (lastRssPublicationTitle != feed.items[i].title) {
+               newFeed.push(feed.items[i])
+            }
+            else break
+         }
+
+         for (let i = newFeed.length-1; i >= 0; i--) {
+            if (lastRssPublicationTitle != newFeed[i].title){
                let category
-               if (feed.items[i].categories) {
-                  category = feed.items[i].categories.reduce((prev, cur) => prev + ', ' + cur)
+               if (newFeed[i].categories) {
+                  category = newFeed[i].categories.reduce((prev, cur) => prev + ', ' + cur)
                } else {
                   category = null
                }
+
+               
                
 
                const pub_id = md5(new Date()+i)
-               const title = feed.items[i].title || null
-               const link = feed.items[i].link || null
-               const creator = feed.items[i].creator || null
-               const content = feed.items[i].content || null
+               const title = newFeed[i].title || null
+               const link = newFeed[i].link || null
+
+               if (link.split('/')[2] == 'sprts.cc') continue
+
+               const creator = newFeed[i].creator || null
+               const content = newFeed[i].content || null
                
-               const date = feed.items[i].isoDate.split('T')[0] || null
+               const date = newFeed[i].isoDate.split('T')[0] || null
                const is_published = true
                
                
@@ -84,7 +96,7 @@ class AdminRssService {
             
          }  
       } catch(e){
-         ///console.log('Некорректный канал')
+        
       }
       
       
@@ -100,7 +112,7 @@ class AdminRssService {
             channelsId.forEach(async channel => {
                await this.fetchRssChannel(channel, parser)
             })
-            //await this.parseYoutubeChannel('https://www.youtube.com/user/pognalisho')
+
          }
       }, config.RSS_CHECK_INTERVAL)
    }
@@ -111,14 +123,12 @@ class AdminRssService {
    }
 
    async deleteRssChannel(channel_id){
-      console.log(channel_id + 'gdfgdfgdfgdfgdgd')
       await RSSPublication.destroy({where: {rssChannelId: channel_id}})
       await RSSChannel.destroy({where: {id: channel_id}})
    }
 
    async getAllRssChannelPublication(channel_id){
       const rssPublications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, order: [['date', 'DESC']], raw: true})
-      console.log(channel_id)
       return rssPublications
    }
 

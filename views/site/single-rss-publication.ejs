@@ -1,0 +1,127 @@
+<%- include('../inc/site-header', {user, HOST, PORT}) %>
+   
+   <link rel="stylesheet" href="assets/single-blog.css">
+   <link rel="stylesheet" href="assets/rss-publication.css">
+
+   <main>
+      <div class="publication-top">
+         <div class="img-block">
+            <img src="https://s5o.ru/storage/simple/ru/edt/67/a5/e7/6d/rue74e07279d7.jpg" alt="" class=""
+               id="title-image">
+            <div class="publication-header">
+               <div class="container">
+                  <div class="rss-post-category">
+                     <%= publication.categories%>
+                  </div>
+                  <div class="rss-post-title">
+                     <%= publication.title %>
+                  </div>
+                  <div class="rss-post-bottom">
+                     <div class="rss-post-author">
+                        <%= publication.channel%>
+                     </div>
+                     <div class="rss-post-date">
+                        <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                           <path
+                              d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z"
+                              stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                           <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10"
+                              stroke-width="2" />
+                           <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10"
+                              stroke-width="2" />
+                        </svg>
+                        <span>
+                           <%= publication.date%>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+
+
+
+            </div>
+         </div>
+
+
+
+      </div>
+      <div class="container">
+         <div class="publication-wrapper">
+            <div class="publication-body">
+               <div class="text"></div>
+            <div class="rss">
+               <div class="rss-post-link">
+                  <div class="rss-content-posts">
+                     <h2>Читайте также</h2>
+                     <% rssPublications.forEach(publication => { %>
+                        <a href="http://<%= HOST %>:<%=PORT%>/rss/<%= publication.id %>" style="text-decoration: none; color: black">
+                           <div class="rss-post">
+                              <% if (publication.categories) {%>
+                                 <div class="rss-post-category"><%= publication.categories %></div>
+                              <%} %>
+                              
+                              <% if (publication.content.length < publication.title.length) {%>
+                                 <div class="rss-post-title"><%= publication.content %></div>
+                                 <div class="rss-post-content"><%= publication.title %></div>
+                              <%} else {%>
+                                 <div class="rss-post-title"><%= publication.title %></div>
+                                 <div class="rss-post-content"><%= publication.content %></div>
+                              <%}%>
+                              
+
+                              <div class="rss-post-bottom">
+                                 <div class="rss-post-author"><%= publication.channel %></div>
+                                 <div class="rss-post-date">
+                                    <svg fill="none" height="26" viewBox="0 0 26 26" width="26" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                       <path d="M16.6 14.4H12.2" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                       <path d="M12 8V14" stroke="#B1B1B1" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+                                    </svg>
+                                    <span><%= publication.date %></span> 
+                                 </div>
+                              </div>
+                           </div>
+                        </a>
+                     <% }) %>
+                     
+              
+               
+                     
+                     
+                     
+                     
+                  </div>
+               </div>
+            </div>
+            </div>
+            <%- include('../inc/site-sider', {}) %>
+         </div>
+
+      </div>
+   </main>
+
+   <script>
+      const text = document.querySelector('.text')
+      text.innerHTML = `<%- rssPublicationText %>`
+      text.querySelectorAll('a').forEach(a => {
+         a.href = ''
+      })
+      isReadMoreFound = false
+      text.childNodes.forEach(node => {
+         if (node.innerHTML == 'Читайте также') isReadMoreFound = true
+         if (isReadMoreFound) {
+            node.remove()
+         }
+      })
+      text.querySelectorAll('h2 a').forEach(node => { node.parentNode.remove() })
+      text.querySelectorAll('h3 a').forEach(node => { node.parentNode.remove() })
+      text.querySelectorAll('pre').forEach(node => { node.parentNode.remove() })
+
+      const headerImg = text.querySelector('img')
+      if (headerImg) document.querySelector('#title-image').src = headerImg.src
+   </script>
+
+
+
+
+   <%- include('../inc/site-footer', {}) %>

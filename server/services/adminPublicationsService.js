@@ -12,7 +12,7 @@ class AdminPublicationsService{
             }
          })
          pub.category = pubCategory
-         pub.createdAt = pub.createdAt.split(' ')[0]
+         pub.createdAt = `${String(pub.createdAt.getDate()).padStart(2, '0')}-${(String(pub.createdAt.getMonth()+1)).padStart(2, '0')}-${pub.createdAt.getFullYear()}`
          return pub
       }))
       return newPub

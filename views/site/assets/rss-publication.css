@@ -1,0 +1,40 @@
+.text img {
+   max-width: 100%;
+   height: auto;
+   margin: 1rem auto;
+   display: block;
+}
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+iframe {
+   max-width: 100%;
+   
+   margin: 1rem auto;
+   display: block;
+}
+
+.img-block img {
+   margin: 0;
+}
+
+body h2 {
+   font-size: 1rem;
+   
+}
+
+body p {
+   font-size: 0.8rem;
+   margin: 0.8rem 0;
+}
+
+.rss-post-title {
+   font-size: 0.8rem;
+}
+
+.rss {
+   margin-top: 2rem;
+}

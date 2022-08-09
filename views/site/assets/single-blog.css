@@ -20,7 +20,8 @@ main .img-block::after {
    content: '';
    height: 0%;
    width: 100%;
-   box-shadow: 0px 0 4rem 6rem rgba(0, 0, 0, .7 );
+   
+   
    bottom: 0;
    left: 0;
    position: absolute;
@@ -28,12 +29,19 @@ main .img-block::after {
 }
 
 .publication-header{
+   box-shadow: 0 0 2rem 3rem rgba(0, 0, 0, .7 );
+   background-color: rgba(0, 0, 0, .7 );
    position: absolute;
    bottom: 0;
    color: white;
    z-index: 2;
    padding-bottom: 0.3rem;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 100%;
 }
+
+
 
 .rss-post-bottom{
    font-size: 0.7rem;

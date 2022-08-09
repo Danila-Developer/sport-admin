@@ -111,18 +111,20 @@ class adminModel {
             const preview_url = feed.items[i].media['media:thumbnail'][0]['$'].url
             const video_url = feed.items[i].link
             const is_published = true
-            await YoutubeChannelVideosModel.create({
-               id: video_id,
-               video_name,
-               description,
-               author, 
-               date,
-               preview_url,
-               video_url,
-               is_published,
-               youtubeChannelId: channel_id
-               })
-            } else break
+            try {
+               await YoutubeChannelVideosModel.create({
+                  id: video_id,
+                  video_name,
+                  description,
+                  author, 
+                  date,
+                  preview_url,
+                  video_url,
+                  is_published,
+                  youtubeChannelId: channel_id
+                  })
+            } catch {}
+         } else break
       }
    }
 

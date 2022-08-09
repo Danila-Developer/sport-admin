@@ -376,6 +376,7 @@ aside {
    text-decoration: none;
    color: black;
    font-size: 0.8rem;
+   width: 100%;
 }
 
 .rss-post-category {
@@ -702,6 +703,7 @@ header h1::after {
    right: 1.8rem;
    opacity: 0;
    transition: .4s all;
+   z-index: 70;
 }
 
 .user-menu ul {
