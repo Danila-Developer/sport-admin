@@ -13,9 +13,8 @@ class FileService {
       fr.writeFileSync(imagePath, base64DataClear, 'base64', e => {
 
       })
-      const HOST = config.HOST
-      const PORT = config.PORT
-      return `http://${HOST}:${PORT}/uploads/${path}/${fileName}`
+      
+      return `uploads/${path}/${fileName}`
    }
 }
 

@@ -203,7 +203,7 @@ main {
 
 
 nav {
-   background-color: white;
+   background-color: #282828;
    height: 2rem;
    line-height: 2rem;
 
@@ -218,7 +218,7 @@ nav ul li {
 nav>ul li a {
    display: block;
    text-decoration: none;
-   color: black;
+   color: white;
    z-index: 4;
 
    font-size: 0.8rem;
@@ -267,7 +267,7 @@ nav ul li:hover ul {
 
 
 header {
-   background-color: white;
+   background-color: #282828;
    box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, .1);
 }
 
@@ -437,6 +437,7 @@ header h1 {
    font-size: 1.2rem;
    font-weight: 600;
    padding-top: 1rem;
+   color: white;
 }
 
 header h1::after {
@@ -678,6 +679,7 @@ header h1::after {
    align-items: center;
    cursor: pointer;
    position: relative;
+   color: white;
 }
 
 
@@ -708,7 +710,7 @@ header h1::after {
 
 .user-menu ul {
    list-style: none;
-   background-color: white;
+   background-color: #282828;
    border-radius: 0.1rem;
    padding: 0.2rem 0;
 }
