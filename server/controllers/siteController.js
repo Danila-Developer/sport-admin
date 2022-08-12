@@ -76,6 +76,28 @@ class SiteController{
       const rssPublications = await siteService.getRssPublications(null, 5)
       return res.render('site/single-rss-publication', {user, HOST, PORT, rssPublicationText, publication: rssPublication, rssPublications})
    }
+
+
+
+   async getYoutubeChannelPage(req, res) {
+      let user
+      try {
+         const userId = TokenService.validateAccessToken(req.cookies.refreshToken).id
+         user = await AuthService.getUserById(userId)
+      } catch {
+         user = null
+      }
+
+      const channelList = await siteService.getYoutubeChannelList()
+      
+      const channelVideoList = await siteService.getYoutubeChannelVideoList(req.params.id)
+
+      
+
+      return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList})
+   }
+
+
 }
 
 module.exports = new SiteController()

@@ -1,6 +1,6 @@
-const HOST = 'http://localhost:3000'
+const HOST = `http://${document.querySelector('#host').dataset['host']}`
 
-makeYoutubeVideoOpanable()
+//makeYoutubeVideoOpanable()
 makeLoginModalButtonActive()
 makeRegistrationModalButtonActive()
 makeLogoutButtonActive()

@@ -24,6 +24,7 @@ app.use('/admin/rss/list', express.static(path.resolve(__dirname, '../admin_stat
 app.use('/', express.static(path.resolve(__dirname, '../views/site')))
 app.use('/blog', express.static(path.resolve(__dirname, '../views/site')))
 app.use('/rss', express.static(path.resolve(__dirname, '../views/site')))
+app.use('/youtube', express.static(path.resolve(__dirname, '../views/site')))
 app.use('/', express.static(path.resolve(__dirname, '..')))
 
 app.set('view engine', 'ejs')

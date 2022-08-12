@@ -1,0 +1,75 @@
+<%- include('../inc/site-header', {user, HOST, PORT}) %>
+
+<link rel="stylesheet" href="assets/site-youtube.css">
+
+   <main>
+      <div class="youtube-nav">
+         <div class="youtube-nav__container">
+            <div class="youtube-nav__container__inner">
+               <div class="youtube-nav__visible_items">
+                  <div class="youtube-nav__items">
+                     <% channelList.forEach(channel => { %>
+                        <a href="http://<%=HOST%>:<%=PORT%>/youtube/<%=channel.id%>" class="youtube-nav__item" data-hover="<%=channel.channel_name%>"><%=channel.channel_name%></a>
+                     <% }) %>
+                  </div>
+                  <img src="assets/img/arrow-icon.svg" alt="" class="icon icon_prev">
+                  <img src="assets/img/arrow-icon.svg" alt="" class="icon icon_next">
+               </div>
+            </div>
+         </div>
+      </div>
+         
+      <div class="container">
+
+         <div class="youtube-watch">
+            <div class="youtube__visible-video">
+               <img src="assets/img/video-arrow.svg" alt="" class="icon-video icon-video_prev">
+               <img src="assets/img/video-arrow.svg" alt="" class="icon-video icon-video_next">
+               
+               
+               <div class="youtube__all-videos">
+                  <!-- <div class="youtube__video-block"><div id="player"></div></div> -->
+                  <% channelVideoList.forEach(video => { %>
+                     <div class="youtube__video-block">
+                        <div class="main-block video" data-vid="<%= video.id %>"  style="width: 90%; height: auto">
+                           <img class="grid-content-img" src="<%= video.preview_url %>" alt="" style="aspect-ratio: 16/9; object-fit: cover">
+                           <div class="grid-content-about" >
+                              <div class="grid-content-author" style="font-size: 0.8rem;"><%= video.channel %></div>
+                              <div class="grid-content-title" style="font-size: 1rem;"><%= video.video_name %></div>
+                           </div>
+                        </div>
+                     </div>
+                  <% }) %>
+                  
+                  <!-- <div class="youtube__video-block">
+                     <iframe class="youtube-iframe" src="https://www.youtube.com/embed/roc7Tdn_3zQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                     </iframe>
+                  </div>
+                   -->
+                  
+                  
+               </div>
+            </div>
+         </div>
+         
+      
+
+      </div>
+
+      
+   </main>
+
+<script src="assets/js/siteYoutubeNavSlider.js"></script>
+<script src="assets/js/siteYoutubeVideoList2.js"></script>
+
+<script>
+   
+
+</script>
+
+<%- include('../inc/site-footer', {}) %>
+   
+
+   
+
+   

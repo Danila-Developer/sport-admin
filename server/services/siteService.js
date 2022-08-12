@@ -132,6 +132,24 @@ class SiteService {
 
       return rssPublciationInnerHtml
    }
+
+   async getYoutubeChannelList() {
+      return await YoutubeChannelsModel.findAll({raw: true})
+   }
+
+
+   async getYoutubeChannelVideoList(channelId, videoId=null) {
+      let videoList
+      
+      videoList = await YoutubeChannelVideosModel.findAll({ where: { is_published: true, youtubeChannelId: channelId }, order: [['date', 'DESC']], raw: true })
+      
+      for (let i = 0; i < videoList.length; i++) {
+         const channel = await YoutubeChannelsModel.findOne({ where: { id: videoList[i].youtubeChannelId }, raw: true })
+         videoList[i]['channel'] = channel.channel_name
+      }
+
+      return videoList
+   }
 }
 
 module.exports = new SiteService()
