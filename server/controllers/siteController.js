@@ -91,7 +91,10 @@ class SiteController{
       const channelList = await siteService.getYoutubeChannelList()
       
       const channelVideoList = await siteService.getYoutubeChannelVideoList(req.params.id)
-
+      
+      if (req.query.vid) {
+         return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: req.query.vid})
+      }
       
 
       return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList})

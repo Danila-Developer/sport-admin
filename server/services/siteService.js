@@ -29,6 +29,10 @@ class SiteService {
       } else {
          videoList = await YoutubeChannelVideosModel.findAll({ where: { is_published: true, youtubeChannelId: channel_id }, order: [['date', 'DESC']], raw: true, limit: limit })
       }
+      for (let i = 0; i < videoList.length; i++) {
+         const channel = await YoutubeChannelsModel.findOne({ where: { id: videoList[i].youtubeChannelId }, raw: true })
+         videoList[i]['channel_id'] = channel.id
+      }
 
       return videoList
    }

@@ -6,7 +6,7 @@
             <h2>Спортивные youtube-каналы</h2>
             <div class="grid-content-wrapper">
                
-               <div class="main-block video" data-vid="<%= videos[0].video_url.split('=')[1] %>">
+                <div class="main-block video video-home" data-vid="<%= videos[0].video_url.split('=')[1] %>" data-channel_id="<%= videos[0].channel_id %>">
                   <img class="grid-content-img" src="<%= videos[0].preview_url %>" alt="">
                   <div class="grid-content-about">
                      <div class="grid-content-author"><%= videos[0].author %></div>
@@ -14,8 +14,9 @@
                   </div>
                   
                </div>
+            
                <div class="side-blocks">
-                  <div class="side-block video" data-vid="<%= videos[1].video_url.split('=')[1] %>">
+                  <div class="side-block video video-home" data-vid="<%= videos[1].video_url.split('=')[1] %>" data-channel_id="<%= videos[1].channel_id %>">
                      <img class="grid-content-img" src="<%= videos[1].preview_url %>" alt="">
                      <div class="grid-content-about">
                         <div class="grid-content-author"><%= videos[1].author %></div>
@@ -23,7 +24,7 @@
                      </div>
                   </div>
                   <div class="side-blocks-separator"></div>
-                  <div class="side-block video" data-vid="<%= videos[2].video_url.split('=')[1] %>">
+                  <div class="side-block video video-home" data-vid="<%= videos[2].video_url.split('=')[1] %>" data-channel_id="<%= videos[2].channel_id %>">
                      <img class="grid-content-img" src="<%= videos[2].preview_url %>" alt="" style="margin-bottom: 0rem;">
                      <div class="grid-content-about">
                         <div class="grid-content-author"><%= videos[2].author %></div>

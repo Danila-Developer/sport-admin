@@ -117,7 +117,7 @@ main {
    display: flex;
    justify-content: center;
    height: auto;
-   padding: 0 3rem;
+   padding: 0 2rem;
    position: relative;
 }
 
@@ -215,9 +215,43 @@ body {
    position: absolute;
 }
 
+.video_block_main_block {
+   width: 90%;
+}
+
 
 .youtube-player-close img {
    display: inline-block;
    height: 1rem;
    vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+   .youtube-iframe {
+      width: 100%;
+   }
+
+   .video_block_main_block {
+      width: 100%;
+   }
+
+   .youtube__video-block {
+      padding: 0 0;
+   }
+}
+
+@media (max-width: 850px) {
+
+}
+
+@media (max-width: 550px) {
+   html {
+      font-size: 10px;
+   }
+}
+
+@media (max-width: 300px) {
+   html {
+      font-size: 8px;
+   }
 }

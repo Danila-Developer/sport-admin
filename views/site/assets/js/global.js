@@ -301,3 +301,13 @@ function makeSubscribeEmailIconActive() {
       }   
    })
 }
+
+
+document.querySelectorAll('.video-home').forEach(video => {
+   video.addEventListener('click', e => {
+      const vid = video.dataset['vid']
+      const channelID = video.dataset['channel_id']
+      location.href = `${HOST}/youtube/${channelID}?vid=${vid}` 
+   })
+   
+})

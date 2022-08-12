@@ -31,7 +31,7 @@
                   <!-- <div class="youtube__video-block"><div id="player"></div></div> -->
                   <% channelVideoList.forEach(video => { %>
                      <div class="youtube__video-block">
-                        <div class="main-block video" data-vid="<%= video.id %>"  style="width: 90%; height: auto">
+                        <div class="main-block video video_block_main_block" data-vid="<%= video.id %>"  style="height: auto">
                            <img class="grid-content-img" src="<%= video.preview_url %>" alt="" style="aspect-ratio: 16/9; object-fit: cover">
                            <div class="grid-content-about" >
                               <div class="grid-content-author" style="font-size: 0.8rem;"><%= video.channel %></div>
@@ -40,15 +40,28 @@
                         </div>
                      </div>
                   <% }) %>
-                  
-                  <!-- <div class="youtube__video-block">
-                     <iframe class="youtube-iframe" src="https://www.youtube.com/embed/roc7Tdn_3zQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                     </iframe>
-                  </div>
-                   -->
-                  
-                  
                </div>
+               <script src="assets/js/siteYoutubeNavSlider.js"></script>
+               <script src="assets/js/siteYoutubeVideoList2.js"></script>
+               <% if (vid) { %>
+                  <script>
+                     const videoBlockH = document.querySelector('.youtube__video-block')
+                     const videoBlockWidthH = videoBlockH.clientWidth
+                     const allVideoContainerH = document.querySelector('.youtube__all-videos')
+                     let videoIndexH = 0
+                     const allVideosH = document.querySelectorAll('.video_block_main_block')
+                     for (let i = 0; i < allVideosH.length; i++) {
+                        if (allVideosH[i].dataset['vid'] == '<%= vid %>'){
+                           allVideoContainerH.style.left = -videoBlockWidthH*i + 'px'
+                           pageVideo = i
+                           checkVideoPageButtons()
+                           break
+                        } 
+                     }
+                     
+                  </script>
+               <% } %>
+
             </div>
          </div>
          
@@ -59,8 +72,7 @@
       
    </main>
 
-<script src="assets/js/siteYoutubeNavSlider.js"></script>
-<script src="assets/js/siteYoutubeVideoList2.js"></script>
+
 
 <script>
    

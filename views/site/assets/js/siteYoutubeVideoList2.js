@@ -171,11 +171,30 @@ document.querySelectorAll('.youtube__video-block').forEach(block => {
          player.playVideo();
       }
 
+      const videoIdList = []
+      const youtubeVideoBlocks = Array.prototype.slice.call(document.querySelector('.youtube__all-videos').children)
+      const blockIndex = youtubeVideoBlocks.indexOf(block)
+      
+      for (let i = blockIndex + 1; i < youtubeVideoBlocks.length; i++) {
+         const videoId = youtubeVideoBlocks[i].querySelector('.video_block_main_block').dataset['vid']
+         videoIdList.push({vid: videoId, state: true})
+      }
 
       var done = false;
       function onPlayerStateChange(event) {
-         if (event.data = 5) {
-            //player.loadVideoById("bHQqvYy5KYo", 5, "large")
+         //console.log(event.data)
+         if (event.data == 0) {
+            for (let i = 0; i < videoIdList.length; i++) {
+               console.log(videoIdList)
+               if (videoIdList[i].state) {
+                  videoIdList[i].state = false
+                  player.cueVideoById(videoIdList[i].vid)
+                  break
+               }
+            }
+         }
+         if (event.data == 5) {
+            player.playVideo();
          }
          
       }
