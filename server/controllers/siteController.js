@@ -4,6 +4,7 @@ const { HOST, PORT } = config
 const TokenService = require('../services/tokenService')
 const AuthService = require('../services/authService')
 const siteService = require('../services/siteService')
+const bannerService = require('../services/bannerService')
 
 
 class SiteController{
@@ -29,8 +30,9 @@ class SiteController{
       const publications = await SiteService.getPublications(null, 10)
       const videos = await SiteService.getVideoList(null, 3)
       const rssPublications = await SiteService.getRssPublications(null, 5)
+      const siderBanner = await bannerService.getRandomBanner('sider')
 
-      return res.render('site/home', {videos, rssPublications, HOST, PORT, user, publications})
+      return res.render('site/home', {videos, rssPublications, HOST, PORT, user, publications, siderBanner})
    }
 
    async getCreateBlog(req, res) {
@@ -58,8 +60,9 @@ class SiteController{
          user = null
       }
       const publication = await SiteService.getPublications(null, 1, req.params.id)
-      
-      return res.render('site/single-blog', { HOST, PORT, user, publication})
+      const siderBanner = await bannerService.getRandomBanner('sider')
+
+      return res.render('site/single-blog', { HOST, PORT, user, publication, siderBanner})
    }
 
    async getRssPublication(req, res) {
@@ -72,9 +75,10 @@ class SiteController{
       }
       const rssPublicationText = await siteService.getRssPublicationText(req.params.id)
       const rssPublication = await siteService.getRssPublication(req.params.id)
-
+      const siderBanner = await bannerService.getRandomBanner('sider')
+      const rssBanners = await bannerService.getAllBannersByTypeId('rss')
       const rssPublications = await siteService.getRssPublications(null, 5)
-      return res.render('site/single-rss-publication', {user, HOST, PORT, rssPublicationText, publication: rssPublication, rssPublications})
+      return res.render('site/single-rss-publication', {user, HOST, PORT, rssPublicationText, publication: rssPublication, rssPublications, siderBanner, rssBanners})
    }
 
 
@@ -89,15 +93,20 @@ class SiteController{
       }
 
       const channelList = await siteService.getYoutubeChannelList()
-      
+      const youtubeBanner = await bannerService.getRandomBanner('youtube')
       const channelVideoList = await siteService.getYoutubeChannelVideoList(req.params.id)
       
       if (req.query.vid) {
-         return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: req.query.vid})
+         return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: req.query.vid, youtubeBanner})
       }
       
 
-      return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: null})
+      return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: null, youtubeBanner})
+   }
+
+   async getRandomBanner(req, res) {
+      const rssBanner = await bannerService.getRandomBanner('rss')
+      res.send(rssBanner)
    }
 
 

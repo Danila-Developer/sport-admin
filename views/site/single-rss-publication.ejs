@@ -49,6 +49,7 @@
          <div class="publication-wrapper">
             <div class="publication-body">
                <div class="text"></div>
+               
             <div class="rss">
                <div class="rss-post-link">
                   <div class="rss-content-posts">
@@ -94,7 +95,7 @@
                </div>
             </div>
             </div>
-            <%- include('../inc/site-sider', {}) %>
+            <%- include('../inc/site-sider', {siderBanner, HOST, PORT}) %>
          </div>
 
       </div>
@@ -119,6 +120,31 @@
 
       const headerImg = text.querySelector('img')
       if (headerImg) document.querySelector('#title-image').src = headerImg.src
+
+      const paragraphs = text.querySelectorAll('p')
+      let lastParagraph = 0
+      if (paragraphs.length > 7) {
+         for (let i = 3; i < paragraphs.length-4; ) {
+            createBanner(paragraphs[i], text)
+            i = i + 5
+         }
+      }
+      
+
+      function createBanner(node, parentNode) {
+        fetch('http://<%=HOST%>:<%=PORT%>/rss-banner')
+        .then(res => res.json())
+        .then(banner => {
+            const imgUrl = `http://<%=HOST%>:<%=PORT%>/${banner.img_url}`
+            const link = banner.link
+            const a = document.createElement('a')
+            a.classList.add('rss-banner-link')
+            a.href = link
+            a.innerHTML = `<img src="${imgUrl}" alt="" class="rss-banner-image">`
+            parentNode.insertBefore(a, node)
+        }).catch()
+         
+      }
    </script>
 
 

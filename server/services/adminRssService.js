@@ -42,7 +42,7 @@ class AdminRssService {
          const lastRssPublicationTitle = (await this.getLastRssPublicationTitle(channel_id))
          let feed = await parser.parseURL((await RSSChannel.findOne({where: {id: channel_id}, raw: true})).rss_link)
 
-         const publications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, raw: true, order: [['createdAt', 'DESC']], offset: 30})
+         const publications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, raw: true, order: [['createdAt', 'DESC']], offset: 300})
          if (publications.length) {
             publications.forEach(async pub => {
                await RSSPublication.destroy({where: {id: pub.id}})

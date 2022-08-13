@@ -38,3 +38,8 @@ body p {
 .rss {
    margin-top: 2rem;
 }
+
+.rss-banner-image {
+   object-fit: contain;
+   max-height: 20rem;
+}

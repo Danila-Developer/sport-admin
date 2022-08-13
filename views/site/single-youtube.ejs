@@ -64,6 +64,15 @@
 
             </div>
          </div>
+
+
+         <% if (youtubeBanner) { %>
+            <a href="<%=youtubeBanner.link%>" class="youtube-banner-link">
+               <img src="http://<%=HOST%>:<%=PORT%>/<%=youtubeBanner.img_url%>" alt="" class="youtube-banner-image">
+            </a>
+         <% } %>
+
+         
          
       
 

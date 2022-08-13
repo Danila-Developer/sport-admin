@@ -12,6 +12,7 @@ Router.post('/blog/create', userAccess, SiteController.postCreateBlog)
 Router.get('/blog/:id', SiteController.getSingeBlog)
 Router.get('/rss/:id', SiteController.getRssPublication)
 Router.get('/youtube/:id', SiteController.getYoutubeChannelPage)
+Router.get('/rss-banner', SiteController.getRandomBanner)
 
 
 module.exports = Router

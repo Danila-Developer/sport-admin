@@ -36,6 +36,17 @@ class BannerService {
    async deleteBanner(id) {
       await BannerModel.destroy({where: {id}})
    }
+
+   async getRandomBanner(typeId) {
+      const banners = await BannerModel.findAll({raw: true, where: {bannerTypeId: typeId}})
+      const bannerIndex = Math.floor(Math.random() * banners.length)
+      return banners[bannerIndex]
+   }
+
+   async getAllBannersByTypeId(typeId) {
+      const banners = await BannerModel.findAll({raw: true, where: {bannerTypeId: typeId}})
+      return banners
+   }
 }
 
 module.exports = new BannerService()

@@ -105,6 +105,8 @@ class AdminController {
       const rssChannelPublicationList = await adminRssService.getAllRssChannelPublication(req.params.id)
       const rssChannelName = await adminRssService.getRssChannelName(req.params.id)
 
+      
+
       return res.render('admin/admin-rss-list', { menuEl: menuElements, HOST, PORT, user, RSS: rssChannelPublicationList, rssChannelName, rss_ch_id: req.params.id })
    }
 

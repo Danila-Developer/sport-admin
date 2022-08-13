@@ -11,21 +11,53 @@
       
       <div class="email-subscribe-button">Перейти</div>
    </div>
+   <% if (siderBanner) { %>
+   <div class="banner-sider">
+      <a href="<%=siderBanner.link%>" class="sider-link">
+         <img src="http://<%=HOST%>:<%=PORT%>/<%=siderBanner.img_url%>" alt="" class="sider-image">
+      </a>
+      
+      
+   </div>
+   <%}%>
 </aside>
 
 <style>
+   .banner-sider {
+      height: auto;
+      background-color: white;
+      width: 12rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      
+      margin: 1rem 0.4rem;
+   }
+
+   .sider-link {
+      display: inline-block;
+   }
+
+   .sider-image {
+      max-width: 100%;
+      max-height: 100%;
+   }
+
    .email-sider {
-   height: 10rem;
-   background-color: white;
-   width: 12rem;
-   position: relative;
-   overflow: hidden;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   border-radius: 0.5rem;
-   margin: 1rem 0.4rem;
+      height: 10rem;
+      background-color: white;
+      width: 12rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 0.5rem;
+      margin: 1rem 0.4rem;
 }
 .mail-img {
    display: block;
