@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ' }) %>
+
+	<body class="page-body">
+		<!-- <div class="modal fade custom-width" id="modal-category">
+			<div class="modal-dialog" style="width: 60%;">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Добавить категорию</h4>
+					</div>
+					
+					<div class="modal-body">
+						
+						<form method="post" class="add-channel-form">
+							<input type="text" class="form-control" id="field-category" placeholder="Название категории" name="add-channel-input">
+						</form>
+						
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
+						<button type="button" class="btn btn-info" onclick="addCategory()">Добавить</button>
+					</div>
+					<script>
+						function addCategory(){
+							input = document.querySelector('#field-category')
+							const data = {category_name: input.value}
+							const url = 'http://<%=HOST%>:<%=PORT%>/admin/publications/add-category'
+
+							fetch('http://<%=HOST%>:<%=PORT%>/admin/publications/add-category', {
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								method: 'POST',
+								body: JSON.stringify(data)
+							}).then( ()=>{
+								location.reload()
+							})
+
+							
+							
+							
+						}
+		
+						
+		
+					</script>
+				</div>
+			</div>
+		</div> -->
+
+
+
+
+
+		<%- include('../inc/admin-settings-pane') %>
+			<div class="page-container">
+				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
+					<div class="main-content">
+						<%- include('../inc/admin-navbar-user', {HOST, PORT, user}) %>
+						
+							<!-- Content -->
+
+							
+							<%= menuEl.yt %>
+							<div class="page-title">
+
+								<div class="title-env">
+									<h1 class="title">Рекламные баннеры</h1>
+									<p class="description">Управляйте рекламными баннерами портала</p>
+								</div>
+								<div class="breadcrumb-env">
+									<a href="http://<%=HOST%>:<%=PORT%>/admin/banner/create">
+										<button class="btn btn-secondary">Добавить баннер</button>
+									</a>
+									
+								</div>
+								
+									
+				
+				
+				
+							</div>
+				
+				
+				
+				
+							<div class="panel-body panel-border">
+								<% bannerList.forEach(categoryBannerList => { %>
+									<div class="type-title"><%= categoryBannerList.category[1] %></div>
+									<div class="banner-img-wrapper">
+									<% categoryBannerList.banners.forEach(banner => { %>
+											<div class="banner-img-block" data-id="<%=banner.id%>">
+												<div class="banner-img-block__buttons">
+													<div class="banner-img-block__buttons-wrapper">
+														<div class="banner-img-block__buttons__watch">
+															Смотреть
+														</div>
+														<div class="banner-img-block__buttons__trash" data-id="<%=banner.id%>">
+															<img src="assets/trash.svg" alt="">
+														</div>
+													</div>
+												</div>
+												<img src="http://<%=HOST%>:<%=PORT%>/<%=banner.img_url%>" alt="" class="banner-img">
+											</div>
+									<% }) %>
+									</div>
+								<% }) %>
+							</div>
+
+
+								<!-- END Content -->
+								<%- include('../inc/admin-footer') %>
+					</div>
+			</div>
+			</div>
+			<%- include('../inc/admin-loader') %>
+				<%- include('../inc/admin-scripts') %>
+
+			<div class="full-image-wrapper">
+				<img src="https://telegra.ph/file/bec4f58798e96de7c8045.jpg" alt="" class="full-image">
+			</div>
+	</body>
+
+	<script>
+		document.querySelectorAll('.banner-img-block__buttons__trash').forEach(trashButton => {
+			trashButton.addEventListener('click', e => {
+				const id = trashButton.dataset['id']
+				fetch(`http://<%=HOST%>:<%=PORT%>/admin/banner`, {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						bannerId: id
+					})
+				}).then(()=> {
+					location.reload()
+				})
+			})
+		})
+
+		document.querySelectorAll('.banner-img-block__buttons__watch').forEach(watchButton => {
+			watchButton.addEventListener('click', e => {
+				const wrapper = document.querySelector('.full-image-wrapper')
+				wrapper.querySelector('.full-image').src = watchButton.parentNode.parentNode.parentNode.querySelector('.banner-img').src
+				wrapper.style.display = 'block'
+				setTimeout(() => wrapper.style.opacity = 1, 1)
+
+				wrapper.addEventListener('click', e => {
+					if (e.target.classList.contains('full-image-wrapper')) {
+						wrapper.style.opacity = 0
+						setTimeout(() => wrapper.style.display = 'none', 300)
+					}
+				})
+			})
+			
+		})
+
+
+	</script>
+<link rel="stylesheet" href="assets/admin-banner.css">
+</html>

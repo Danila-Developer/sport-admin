@@ -6,6 +6,7 @@ const config = require('../../config')
 const TokenService = require('../services/tokenService')
 const AuthService = require('../services/authService')
 const adminRssService = require('../services/adminRssService')
+const bannerService = require('../services/bannerService')
 const { HOST, PORT } = config
 
 class AdminController {
@@ -125,7 +126,35 @@ class AdminController {
       res.sendStatus(200)
    }
 
-   
+   async postSaveBanner(req, res) {
+      await bannerService.createBanner(req.body.category_id, req.body.img, req.body.link)
+      return res.sendStatus(200)
+   }
+
+   async getCreateBanner(req, res) {
+      const userId = TokenService.validateAccessToken(req.cookies.refreshToken).id
+      const user = await AuthService.getUserById(userId)
+      const adminModel = new adminMod()
+      const menuElements = await adminModel.getMenuElements()
+      const categories = await bannerService.getBannerCategories()
+
+      res.render('admin/banner-create', { menuEl: menuElements, categories, HOST, PORT, user })
+   }
+
+   async getBannerListPage(req, res) {
+      const userId = TokenService.validateAccessToken(req.cookies.refreshToken).id
+      const user = await AuthService.getUserById(userId)
+      const adminModel = new adminMod()
+      const allPublications = await AdminPublicationsService.getAllPublications()
+      const menuElements = await adminModel.getMenuElements()
+      const bannerList = await bannerService.getAdminBannerList()
+      res.render('admin/admin-banner', { menuEl: menuElements, allPublications, HOST, PORT, user, bannerList })
+   }
+
+   async deleteBanner(req, res) {
+      await bannerService.deleteBanner(req.body.bannerId)
+      return res.sendStatus(200)
+   }
 
 
 }

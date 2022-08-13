@@ -29,4 +29,8 @@ Rourter.get('/rss/delete/:id', adminController.deleteRss)
 Rourter.get('/rss/set-published', adminController.setRssPublished)
 Rourter.post('/rss/add-channel', adminController.addRssChannel)
 
+Rourter.get('/banner/create', adminAccessMiddleware, adminController.getCreateBanner)
+Rourter.post('/banner/create', adminAccessMiddleware, adminController.postSaveBanner)
+Rourter.get('/banner', adminAccessMiddleware, adminController.getBannerListPage)
+Rourter.delete('/banner', adminAccessMiddleware, adminController.deleteBanner)
 module.exports = Rourter

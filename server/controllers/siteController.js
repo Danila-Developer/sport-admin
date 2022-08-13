@@ -97,7 +97,7 @@ class SiteController{
       }
       
 
-      return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList})
+      return res.render('site/single-youtube', { HOST, PORT, user, channelList, channelVideoList, vid: null})
    }
 
 

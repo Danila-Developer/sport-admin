@@ -52,6 +52,17 @@ const RSSPublication = sequelize.define('rss_publication', {
     is_published: {type: DataTypes.BOOLEAN}
 })
 
+const BannerModel = sequelize.define('banner', {
+    id: {type: DataTypes.STRING, primaryKey: true},
+    img_url: {type: DataTypes.STRING},
+    link: {type: DataTypes.STRING}
+})
+
+const BannerTypeModel = sequelize.define('banner_type', {
+    id: {type: DataTypes.STRING, primaryKey: true},
+    type_name: {type: DataTypes.STRING}
+})
+
 
 
 YoutubeChannelsModel.hasMany(YoutubeChannelVideosModel)
@@ -62,6 +73,8 @@ RSSChannel.hasMany(RSSPublication)
 RSSPublication.belongsTo(RSSChannel)
 UserModel.hasMany(PublicationModel)
 PublicationModel.belongsTo(UserModel)
+BannerTypeModel.hasMany(BannerModel)
+BannerModel.belongsTo(BannerTypeModel)
 
 
 module.exports = {
@@ -70,5 +83,7 @@ module.exports = {
     PublicationModel,
     PublicationCategoryModel,
     RSSPublication,
-    RSSChannel
+    RSSChannel,
+    BannerModel,
+    BannerTypeModel
 }

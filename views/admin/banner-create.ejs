@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../inc/admin-head', {title: 'АДМИН-ПАНЕЛЬ' }) %>
+
+	<body class="page-body">
+		<%- include('../inc/admin-settings-pane') %>
+			<div class="page-container">
+				<%- include('../inc/admin-sidebar-menu', {menuElements: menuEl}) %>
+					<div class="main-content">
+						<%- include('../inc/admin-navbar-user', {HOST, PORT, user}) %>
+
+							<!-- Content -->
+							
+
+
+							<div class="page-title">
+
+								<div class="title-env">
+									<h1 class="title">Создание баннера</h1>
+				
+								</div>
+				
+				
+				
+							</div>
+				
+				
+							<script type="text/javascript">
+								jQuery(document).ready(function ($) {
+									$("#sboxit-2").selectBoxIt({
+										showFirstOption: false
+									}).on('open', function () {
+										// Adding Custom Scrollbar
+										$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+									});
+								});
+							</script>
+				
+							<form role="form" method="post" id="banner-create-form">
+
+								<select class="form-control" id="category">
+									<option disabled selected>Выберите расположение баннера</option>
+									<% categories.forEach(cat => { %>
+										<option value="<%=cat.id%>"><%=cat.type_name%></option>
+									<%}) %>
+								</select>
+								<input type="text" class="form-control" id="banner-link" placeholder="Ссылка на ресурс" style="margin: 20px 0">
+								<input class="btn btn-white" id="banner-file-input" type="file" style="margin-top: 20px; width: 100%;" accept=".png, .jpg"></input>
+								
+								<br>
+								<button type="button" class="btn btn-secondary" onclick="saveBanner()">Сохранить</button>
+
+								<script>
+									function saveBanner(){
+										const category_id = document.querySelector('#category').value
+										const link = document.querySelector('#banner-link').value
+										const reader = new FileReader()
+										const files = document.querySelector('#banner-file-input').files
+										if (files.length == 0) return
+										reader.readAsDataURL(files[0])
+										reader.onload = () => {
+											fetch(`http://<%=HOST%>:<%=PORT%>/admin/banner/create`, {
+												method: 'POST',
+												headers: {
+													'Content-Type': 'application/json'
+												},
+												body: JSON.stringify({
+													category_id,
+													img: reader.result,
+													link
+												})	
+											})
+											.then(()=> {
+												location.href = 'http://<%=HOST%>:<%=PORT%>/admin/banner'
+											})
+										}
+										
+										
+										
+										
+										
+									}
+								</script>
+				
+							</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+								<!-- END Content -->
+								<%- include('../inc/admin-footer') %>
+					</div>
+			</div>
+			</div>
+			<%- include('../inc/admin-loader') %>
+				<%- include('../inc/admin-scripts') %>
+	</body>
+
+</html>
