@@ -266,7 +266,7 @@ body {
 
 }
 
-@media (max-width: 550px) {
+/* @media (max-width: 550px) {
    html {
       font-size: 10px;
    }
@@ -276,4 +276,4 @@ body {
    html {
       font-size: 8px;
    }
-}
+} */

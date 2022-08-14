@@ -565,6 +565,7 @@ header h1::after {
    /* align-items: center; */
    opacity: 0;
    transition: .2s all;
+   z-index: 1000000000;
 }
 
 .login-block {
@@ -672,6 +673,7 @@ header h1::after {
    
    opacity: 0;
    transition: .2s all;
+   z-index: 1000000000;
 }
 
 .registration-wrapper .login-block {

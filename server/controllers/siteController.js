@@ -29,7 +29,7 @@ class SiteController{
       }
       const publications = await SiteService.getPublications(null, 10)
       const videos = await SiteService.getVideoList(null, 3)
-      const rssPublications = await SiteService.getRssPublications(null, 5)
+      const rssPublications = await SiteService.getRssPublications(null, 10)
       const siderBanner = await bannerService.getRandomBanner('sider')
 
       return res.render('site/home', {videos, rssPublications, HOST, PORT, user, publications, siderBanner})

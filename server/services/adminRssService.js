@@ -128,7 +128,7 @@ class AdminRssService {
    }
 
    async getAllRssChannelPublication(channel_id){
-      const rssPublications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, order: [['date', 'DESC']], raw: true})
+      const rssPublications = await RSSPublication.findAll({where: {rssChannelId: channel_id}, order: [['createdAt', 'DESC']], raw: true, limit: 50})
       return rssPublications
    }
 
