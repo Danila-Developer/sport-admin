@@ -1,0 +1,115 @@
+<%- include('../inc/new_header', {user, HOST, PORT}) %>
+
+   <main class="main">
+      <div class="container">
+         <div class="title">Читайте новости!</div>
+         <div class="video-wrapper">
+            <a class="video-preview video-preview_first" href="http://<%= HOST %>:<%=PORT%>/rss/<%= rssPublications[0].id %>">
+               <img src="<%=rssPublications[0].pre_image%>" alt="" class="video-preview__image">
+               <div class="video-preview__info">
+                  <div class="video-preview__info__title"><%=rssPublications[0].title%></div>
+                  <div class="video-preview__info__bottom">
+                     <div class="video-preview__info__bottom__author"><%=rssPublications[0].channel%></div>
+                     <div class="video-preview__info__bottom__date"><%= rssPublications[0].date %></div>
+                  </div>
+               </div>
+            </a>
+            <div class="side-videos">
+               <a class="video-preview video-preview_side" href="http://<%= HOST %>:<%=PORT%>/rss/<%= rssPublications[1].id %>">
+                  <img src="<%=rssPublications[1].pre_image%>" alt="" class="video-preview__image">
+                  <div class="video-preview__info video-preview__info_side">
+                     <div class="video-preview__info__title video-preview__info__title_side"><%=rssPublications[1].title%></div>
+                     <div class="video-preview__info__bottom video-preview__info__bottom_side">
+                        <div class="video-preview__info__bottom__author video-preview__info__bottom__author_side"><%=rssPublications[1].channel%></div>
+                        <div class="video-preview__info__bottom__date video-preview__info__bottom__date_side"><%= rssPublications[1].date %></div>
+                     </div>
+                  </div>
+               </a>
+               <a class="video-preview video-preview_side" href="http://<%= HOST %>:<%=PORT%>/rss/<%= rssPublications[2].id %>">
+                  <img src="<%=rssPublications[2].pre_image%>" alt="" class="video-preview__image">
+                  <div class="video-preview__info video-preview__info_side">
+                     <div class="video-preview__info__title video-preview__info__title_side"><%=rssPublications[2].title%></div>
+                     <div class="video-preview__info__bottom video-preview__info__bottom_side">
+                        <div class="video-preview__info__bottom__author video-preview__info__bottom__author_side"><%=rssPublications[2].channel%></div>
+                        <div class="video-preview__info__bottom__date video-preview__info__bottom__date_side"><%= rssPublications[2].date %>7</div>
+                     </div>
+                  </div>
+               </a>
+               <a class="video-preview video-preview_side" href="http://<%= HOST %>:<%=PORT%>/rss/<%= rssPublications[3].id %>">
+                  <img src="<%=rssPublications[3].pre_image%>" alt="" class="video-preview__image">
+                  <div class="video-preview__info video-preview__info_side">
+                     <div class="video-preview__info__title video-preview__info__title_side"><%=rssPublications[3].title%></div>
+                     <div class="video-preview__info__bottom video-preview__info__bottom_side">
+                        <div class="video-preview__info__bottom__author video-preview__info__bottom__author_side"><%=rssPublications[3].channel%></div>
+                        <div class="video-preview__info__bottom__date video-preview__info__bottom__date_side"><%= rssPublications[3].date %></div>
+                     </div>
+                  </div>
+               </a>
+            </div>
+         </div>
+
+         <div class="title">Смотрите спорт!</div>
+
+         <div class="content-with-sider">
+            <div class="content-with-sider__content">
+               <div class="blog-container-wrapper">
+                  <div class="blog-container" id="blog-container-youtube">
+                     <div class="title2"><%= firstYoutubeVideo[0].author %></div>
+                     <div class="blog-wrapper">
+                        <a href="http://<%=HOST%>:<%=PORT%>/youtube/<%=firstYoutubeVideo[0].channel_id%>?vid=<%=firstYoutubeVideo[0].id%>" class="blog__first">
+                           <img src="<%= firstYoutubeVideo[0].preview_url %>" alt="" class="blog__img">
+                           <div class="blog__info blog__info_first">
+                              <div class="blog__info__title blog__info__title_first"><%= firstYoutubeVideo[0].video_name %></div>
+                              <div class="video-preview__info__bottom">
+                                 <div class="video-preview__info__bottom__author"><%= firstYoutubeVideo[0].channel %></div>
+                                 <div class="video-preview__info__bottom__date"><%= firstYoutubeVideo[0].date %></div>
+                              </div>
+                           </div>
+                        </a>
+                        <div class="blog__sider">
+                           <a href="http://<%=HOST%>:<%=PORT%>/youtube/<%=firstYoutubeVideo[1].channel_id%>?vid=<%=firstYoutubeVideo[1].id%>" class="blog__side">
+                              <div class="blog__img_side-wrapper">
+                                 <img src="<%= firstYoutubeVideo[1].preview_url %>" alt="" class="blog__img blog__img_side">
+                              </div>
+                              
+                              <div class="blog__info blog__info_side">
+                                 <div class="blog__info__title blog__info__title_side"><%= firstYoutubeVideo[1].video_name %></div>
+                              </div>
+                           </a>
+                           <a href="http://<%=HOST%>:<%=PORT%>/youtube/<%=firstYoutubeVideo[1].channel_id%>?vid=<%=firstYoutubeVideo[2].id%>" class="blog__side">
+                              <div class="blog__img_side-wrapper">
+                                 <img src="<%= firstYoutubeVideo[2].preview_url %>" alt="" class="blog__img blog__img_side">
+                              </div>
+                              
+                              <div class="blog__info blog__info_side">
+                                 <div class="blog__info__title blog__info__title_side"><%= firstYoutubeVideo[2].video_name %></div>
+                                 
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="next-prev-buttons">
+                     <img src="assets/images/next.svg" alt="" class="next-button prev button_inactive">
+                     <img src="assets/images/next.svg" alt="" class="next-button next button_active">
+                  </div>
+               </div>
+               
+               
+
+            </div>
+            <div class="content-with-sider__sider">
+               <div class="title2 title2_black">Оставайтесь на связи</div>
+               <div class="sider__subscribe">
+                  
+                  
+               </div>
+            </div>
+         </div>
+
+
+      </div>
+   </main>
+   <script src="assets/scripts/videoPages.js"></script>
+</body>
+</html>

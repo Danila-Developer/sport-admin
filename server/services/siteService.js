@@ -137,6 +137,16 @@ class SiteService {
       return rssPublciationInnerHtml
    }
 
+   async getRssPublicationImage(rssPublicationId) {
+      const text = await this.getRssPublicationText(rssPublicationId)
+      if (text) {
+         const $ = cheerio.load(text)
+         return $('img').attr().src
+      }
+      return false
+      
+   }
+
    async getYoutubeChannelList() {
       return await YoutubeChannelsModel.findAll({raw: true})
    }
@@ -150,6 +160,7 @@ class SiteService {
       for (let i = 0; i < videoList.length; i++) {
          const channel = await YoutubeChannelsModel.findOne({ where: { id: videoList[i].youtubeChannelId }, raw: true })
          videoList[i]['channel'] = channel.channel_name
+         videoList[i]['channel_id'] = channel.id
       }
 
       return videoList

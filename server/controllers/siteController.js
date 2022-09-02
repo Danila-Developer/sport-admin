@@ -27,12 +27,35 @@ class SiteController{
       } catch {
          user = null
       }
+      
+      const firstYoutubeVideo = await SiteService.getYoutubeChannelVideoList((await SiteService.getYoutubeChannelList())[0].id)
+      
       const publications = await SiteService.getPublications(null, 10)
-      const videos = await SiteService.getVideoList(null, 3)
       const rssPublications = await SiteService.getRssPublications(null, 10)
       const siderBanner = await bannerService.getRandomBanner('sider')
 
-      return res.render('site/home', {videos, rssPublications, HOST, PORT, user, publications, siderBanner})
+      for(let i = 0; i < 4; i++) {
+         const imgSrc = await SiteService.getRssPublicationImage(rssPublications[i].id)
+         if (imgSrc) {
+            rssPublications[i]['pre_image'] = imgSrc
+         } else {
+            rssPublications.splice(i, 1)
+            i = i - 1
+         }
+         
+      }
+
+      return res.render('site/new_home', {rssPublications, HOST, PORT, user, publications, siderBanner, firstYoutubeVideo})
+   }
+
+   async getYoutubeChannelListJSON(req, res) {
+      const channels = await SiteService.getYoutubeChannelList()
+      return res.send(channels)
+   }
+
+   async getYoutubeChannelVideoListJSON(req, res) {
+      const videos = await SiteService.getYoutubeChannelVideoList(req.params.id)
+      return res.send(videos)
    }
 
    async getCreateBlog(req, res) {

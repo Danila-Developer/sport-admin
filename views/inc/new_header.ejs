@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <title>Спортиные новости</title>
+   <link rel="stylesheet" href="assets/slyles/new_global.css">
+   <link rel="stylesheet" href="assets/slyles/new_header.css">
+   <link rel="stylesheet" href="assets/slyles/new_main.css">
+   <link rel="stylesheet" href="assets/slyles/new_sider.css">
+</head>
+<body>
+   <header class="header">
+      <div class="container">
+         <div class="mob-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+         </div>
+         <a href="#" class="header__logo">
+            <img src="assets/images/logo.webp" alt="" class="header__logo__image">
+         </a>
+         <nav class="header__nav">
+            <ul class="header__nav__ul">
+               <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Главная">Главная</a></li>
+               <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Новости">Новости</a></li>
+               <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Видео">Видео</a></li>
+               <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Блог">Блог</a></li>
+            </ul>
+            <!-- <img src="assets/images/search.svg" alt="" class="header__nav__ul__search"> -->
+            <% if (user) { %>
+            <div class="header__nav__ul__user">
+               <img src="assets/images/user.svg" alt="" class="header__nav__ul__user__icon">
+               <a class="header__nav__ul__user__name"><%= user.first_name %> <%= user.last_name %></a>
+               <a href="<%= `http://${HOST}:${PORT}/blog/create` %>" class="header__nav__ul__user__to-blog">+</a>
+            </div>
+            <% } else { %>
+            <div class="header__nav__ul__user">
+               <span class="header__nav__ul__user__span header__nav__ul__user__span_registration" data-hover="Регистрация">Регистрация</span>
+               <span class="header__nav__ul__user__span header__nav__ul__user__span_login" data-hover="Войти">Войти</span> 
+            </div>
+            <% } %>
+         </nav>
+      </div>
+   </header>
+
+<div id="host" style="display: none;" data-host="<%=HOST%>:<%=PORT%>"></div>
+
+<div class="menu-mob-wrapper">
+   <div class="menu-mob-container">
+      <img src="assets/images/close.svg" alt="" class="menu-mob-container__close">
+      <a href="#" class="header__logo">
+         <img src="assets/images/logo.webp" alt="" class="header__logo__image">
+      </a>
+      <% if (user) { %>
+         <div class="header__nav__ul__user">
+            <img src="assets/images/user.svg" alt="" class="header__nav__ul__user__icon">
+            <div class="header__nav__ul__user__name"><%= user.first_name %> <%= user.last_name %></div>
+         </div>
+         <% } else { %>
+         <div class="header__nav__ul__user">
+            <span class="header__nav__ul__user__span header__nav__ul__user__span_registration" data-hover="Регистрация">Регистрация</span>
+            <span class="header__nav__ul__user__span header__nav__ul__user__span_login" data-hover="Войти">Войти</span> 
+         </div>
+         <% } %>
+         <div class="menu-mob-container__separator"></div>
+         <ul class="header__nav__ul">
+            <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Главная">Главная</a></li>
+            <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Новости">Новости</a></li>
+            <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Видео">Видео</a></li>
+            <li class="header__nav__ul__li"><a href="" class="header__nav__ul__li__a" data-hover="Блог">Блог</a></li>
+         </ul>
+   </div>
+   
+</div>
+
+<script src="assets/scripts/mobMenu.js"></script>
+<script src="assets/scripts/auth.js"></script>

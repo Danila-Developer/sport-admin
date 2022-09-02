@@ -70,7 +70,7 @@ main .img-block::after {
 
 .publication-body{
    display: block;
-   white-space: wrap;
+   white-space: pre-wrap;
    max-width: 40rem;
    padding: 0 1rem;
 }

@@ -6,28 +6,29 @@
 		<div class="modal fade custom-width" id="modal-category">
 			<div class="modal-dialog" style="width: 60%;">
 				<div class="modal-content">
-					
+
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Добавить категорию</h4>
 					</div>
-					
+
 					<div class="modal-body">
-						
+
 						<form method="post" class="add-channel-form">
-							<input type="text" class="form-control" id="field-category" placeholder="Название категории" name="add-channel-input">
+							<input type="text" class="form-control" id="field-category" placeholder="Название категории"
+								name="add-channel-input">
 						</form>
-						
+
 					</div>
-					
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-white" data-dismiss="modal">Отмена</button>
 						<button type="button" class="btn btn-info" onclick="addCategory()">Добавить</button>
 					</div>
 					<script>
-						function addCategory(){
+						function addCategory() {
 							input = document.querySelector('#field-category')
-							const data = {category_name: input.value}
+							const data = { category_name: input.value }
 							const url = 'http://<%=HOST%>:<%=PORT%>/admin/publications/add-category'
 
 							fetch('http://<%=HOST%>:<%=PORT%>/admin/publications/add-category', {
@@ -36,17 +37,17 @@
 								},
 								method: 'POST',
 								body: JSON.stringify(data)
-							}).then( ()=>{
+							}).then(() => {
 								location.reload()
 							})
 
-							
-							
-							
+
+
+
 						}
-		
-						
-		
+
+
+
 					</script>
 				</div>
 			</div>
@@ -64,92 +65,98 @@
 
 							<!-- Content -->
 
-							
-							<%= menuEl.yt %>
-							<div class="page-title">
 
-								<div class="title-env">
-									<h1 class="title">Публикации</h1>
-									<p class="description">Добавьте публикации портала</p>
-								</div>
-								<div class="breadcrumb-env">
+							<%= menuEl.yt %>
+								<div class="page-title">
+
+									<div class="title-env">
+										<h1 class="title">Публикации</h1>
+										<p class="description">Добавьте публикации портала</p>
+									</div>
+									<!-- <div class="breadcrumb-env">
 									<a href="http://<%=HOST%>:<%=PORT%>/admin/edit-publication">
 										<button class="btn btn-secondary">Добавить публикацию</button>
 									</a>
 									<a href="javascript:;" onclick="jQuery('#modal-category').modal('show');" class="">
 									<button class="btn btn-info">Добавить категорию</button></a>
-								</div>
-								
-									
-				
-				
-				
-							</div>
-				
-				
-				
-				
-							<div class="panel-body panel-border">
-				
-								<div class="row">
-									<div class="col-sm-12">
-				
-										<!-- Table Model 2 -->
-										<strong>Список публикации</strong>
-				
-										<table class="table table-model-2 table-hover">
-											<thead>
-												<tr>
-													<th style="white-space: nowrap">Название</th>
-													<!-- <th style="white-space: nowrap">Категория</th> -->
-													<th style="white-space: nowrap">Дата</th>
-													<th style="white-space: nowrap"></th>
-												</tr>
-											</thead>
-				
-											<tbody>
-												<% allPublications.forEach(pub => { %>
-													
-													<tr style="cursor: pointer" >
-														<td><%=pub.title%></td>
-														
-														<td><%=pub.createdAt%></td>
-														<% if(!pub.is_published) { %>
-														<td align="right"><button class="btn btn-primary btn-icon" style="width: 140px;" onclick="setPub('<%=pub.id%>', true)">
-																<span>Опубликовать</span>
-															</button></td>
-														<% }else{ %>
-															<td align="right"><button class="btn btn-white btn-icon" style="width: 140px;" onclick="setPub('<%=pub.id%>', false)">
-																<span>Снять с публикации</span>
-															</button></td>
-															<% } %>
-														
-													</tr>
-													<script>
-														function setPub(pid, is_pub){
-															fetch(`http://<%=HOST%>:<%=PORT%>/admin/publications/set-published/${pid}/${is_pub}`)
-															.then(()=>{
-																location.reload()
-															})
-															
-														}
-														
-													</script>
-												
+								</div> -->
 
-												<% }) %>
-					
-											</tbody>
-										</table>
-				
-										<script type="text/javascript">
-				
-										</script>
-				
-									</div>
+
+
+
+
 								</div>
-				
-							</div>
+
+
+
+
+								<div class="panel-body panel-border">
+
+									<div class="row">
+										<div class="col-sm-12">
+
+											<!-- Table Model 2 -->
+											<strong>Список публикации</strong>
+
+											<table class="table table-model-2 table-hover">
+												<thead>
+													<tr>
+														<th style="white-space: nowrap">Название</th>
+														<!-- <th style="white-space: nowrap">Категория</th> -->
+														<th style="white-space: nowrap">Дата</th>
+														<th style="white-space: nowrap"></th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<% allPublications.forEach(pub=> { %>
+
+														<tr style="cursor: pointer">
+															<td>
+																<%=pub.title%>
+															</td>
+
+															<td>
+																<%=pub.createdAt%>
+															</td>
+															<% if(!pub.is_published) { %>
+																<td align="right"><button class="btn btn-primary btn-icon"
+																		style="width: 140px;" onclick="setPub('<%=pub.id%>', true)">
+																		<span>Опубликовать</span>
+																	</button></td>
+																<% }else{ %>
+																	<td align="right"><button class="btn btn-white btn-icon"
+																			style="width: 140px;" onclick="setPub('<%=pub.id%>', false)">
+																			<span>Снять с публикации</span>
+																		</button></td>
+																	<% } %>
+
+														</tr>
+														<script>
+															function setPub(pid, is_pub) {
+																fetch(`http://<%=HOST%>:<%=PORT%>/admin/publications/set-published/${pid}/${is_pub}`)
+																	.then(() => {
+																		location.reload()
+																	})
+
+															}
+
+														</script>
+
+
+														<% }) %>
+
+												</tbody>
+											</table>
+
+											<script type="text/javascript">
+
+											</script>
+
+										</div>
+									</div>
+
+								</div>
 
 
 								<!-- END Content -->
